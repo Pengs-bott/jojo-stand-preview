@@ -1,0 +1,1981 @@
+<!doctype html>
+<html lang="ko">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#5833a2"><title>JOJO CYOA · 스탠드 제작</title><style>
+:root{--paper:#f7f4ec;--ink:#252329;--purple:#5833a2;--yellow:#f4cf52;--muted:#66616c;--line:#d3cdc2;--white:#fffefa;--wash:#eee6f7}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:Pretendard,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;font-size:16px;line-height:1.6}button,textarea{font:inherit;color:inherit}button,summary{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.5}button:focus-visible,summary:focus-visible,textarea:focus-visible{outline:3px solid #8731c3;outline-offset:3px}p{margin:0 0 10px}h1,h2,h3{line-height:1.3;letter-spacing:-.5px}h1{font-size:clamp(26px,4vw,36px);margin:0}h2{font-size:22px;margin:0 0 10px}h3{font-size:17px;margin:18px 0 8px}.masthead{background:var(--ink);color:#fff;padding:16px max(20px,calc((100vw - 1160px)/2));display:flex;align-items:center;justify-content:space-between;gap:12px}.masthead strong{display:block;font-size:24px;letter-spacing:-1px}.masthead strong span{color:var(--yellow)}.eyebrow{font-size:11px;letter-spacing:2px;font-weight:800}.edition{font-size:12px;color:#ddd5e9;white-space:nowrap}main{max-width:1200px;padding:20px 20px 36px;margin:auto}.page-footer{font-size:14px;color:var(--muted);padding:18px 20px 30px;text-align:center;border-top:1px solid var(--line)}.steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin:0 0 20px;padding:0;list-style:none}.steps li{padding:8px;border-bottom:3px solid var(--line);font-size:14px;color:var(--muted)}.steps li.current{color:var(--purple);border-color:var(--purple);font-weight:800}.steps span{display:inline-block;margin-right:6px;font-size:12px}.head-row{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}.intro{color:var(--muted);margin-bottom:18px}.btn{min-height:46px;min-width:44px;border:1.5px solid var(--line);border-radius:6px;padding:10px 14px;background:var(--white);font-weight:700;font-size:15px;line-height:1.4;word-break:keep-all;overflow-wrap:normal}.btn:hover:not(:disabled){border-color:var(--purple);background:var(--wash)}.btn.primary{background:var(--purple);border-color:var(--purple);color:#fff}.btn.primary:hover:not(:disabled){background:#452580}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;align-items:start}.card{padding:16px;border:1.5px solid var(--line);border-radius:8px;background:var(--white);display:flex;flex-direction:column;min-width:0}.card.selected{border-color:var(--purple);box-shadow:0 0 0 1px var(--purple);background:#f5eefb}.card-top{display:flex;align-items:center;gap:8px;margin-bottom:8px}.symbol{font-size:24px;color:var(--purple);line-height:1}.tag{font-size:13px;font-weight:800;color:var(--purple)}.effect{font-size:16px}.example{font-size:15px;color:var(--muted)}.example span{font-size:13px;font-weight:800;color:var(--purple);margin-right:5px}.caution{border-left:3px solid var(--yellow);padding:8px 10px;background:#faf5e3;color:#524835;font-size:14px;margin:4px 0 10px}.caution .list{margin:0;padding-left:16px}.caution li{font-size:14px;margin:3px 0}.defaults,.small{font-size:14px;color:var(--muted)}.defaults{margin:0 0 10px}.card-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}.badge{display:inline-block;align-self:flex-start;font-size:13px;font-weight:800;border:1px solid #c6b2e1;background:var(--wash);color:var(--purple);border-radius:4px;padding:2px 8px;margin-bottom:10px}.body-card>p{font-size:15px}.difference{border-left:3px solid var(--purple);padding-left:10px}.body-limit{font-size:14px!important;color:#665128;background:#faf5e3;padding:7px 10px;border-radius:4px}.trade{font-size:15px}.trade strong{color:var(--purple);display:inline-block;margin-right:6px}.card>details{margin-top:8px}.choice-bar{border:1px solid var(--line);border-radius:8px;background:var(--paper);padding:10px 14px;margin-top:20px;z-index:10}.choice-status{font-size:14px;margin-bottom:8px;color:var(--muted)}.choice-buttons{display:grid;grid-template-columns:1fr 1.6fr;gap:10px}.choice-bar .btn{width:100%}.notice{padding:10px 14px;border-left:3px solid var(--purple);background:var(--wash);font-size:14px;margin-top:16px}.result-head{padding:20px;background:var(--ink);color:#fff;border-radius:8px;border-left:5px solid var(--yellow);margin-bottom:16px}.result-head h1{margin:8px 0 10px}.result-head .tag{color:var(--yellow)}.result-head .badge{background:#40324f;color:#eee8f6;border-color:#80718f;margin:0 0 10px}.result-head .effect{color:#eee8f6;margin:0}.result-identity{font-size:15px}.panel{background:var(--white);border:1.5px solid var(--line);border-radius:8px;padding:18px;margin-bottom:16px}.panel h2{font-size:20px}.panel .caution{margin-bottom:0}.result-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-bottom:20px}.result-actions .btn{width:100%}.full-details>h2{margin-bottom:6px}.list{padding-left:20px;margin:8px 0 12px}.list li{margin:5px 0;font-size:15px}details{border-top:1px solid var(--line);padding:6px 0}summary{color:var(--purple);font-weight:800;font-size:15px;min-height:44px;padding:10px 0;display:list-item;list-style-position:inside;line-height:1.5}details[open] summary{margin-bottom:10px}details p,details li{font-size:15px;overflow-wrap:anywhere}.rules{margin:0}.rules dt{font-weight:800;color:var(--purple);margin:16px 0 5px}.rules dd{margin:0;font-size:15px;overflow-wrap:anywhere;line-height:1.8}.stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:12px 0}.stat{border:1px solid var(--line);border-radius:5px;padding:8px;text-align:center}.stat span{display:block;font-size:13px;color:var(--muted)}.stat strong{color:var(--purple);font-size:22px}.copy-area{width:100%;min-height:200px;padding:12px;border:1px solid var(--line);border-radius:5px;resize:vertical;font-size:16px;background:var(--paper)}.error{background:#fbe8ed;border:1px solid #ac2947;padding:16px;border-radius:5px;color:#ac2947}
+@media(max-width:960px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){main{padding:16px 16px 30px}.masthead{padding:12px 16px}.masthead strong{font-size:21px}.steps{margin-bottom:16px}.steps li{padding:8px 4px}.head-row{align-items:flex-start}.head-row h1{font-size:26px}.head-row>.btn{font-size:14px;padding:10px;flex-shrink:0}.grid{grid-template-columns:1fr;gap:12px}.card{padding:16px}.card h2{font-size:22px}.has-choice-bar{padding-bottom:calc(var(--choicebar-height,130px) + 24px)}.has-choice-bar+.page-footer{padding-bottom:140px}.choice-bar{position:fixed;bottom:0;left:0;right:0;border-radius:0;border-left:0;border-right:0;padding:9px 16px calc(10px + env(safe-area-inset-bottom));box-shadow:0 -3px 15px #25232915;margin:0}.choice-status{margin-bottom:6px}.result-head{padding:18px}.panel{padding:16px}.result-actions{gap:8px}.result-actions .btn{padding:11px 10px}.body-card .range-label{font-size:14px}.rules dd{line-height:1.85}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.session-note{font-size:14px;color:var(--muted);padding:8px 12px;background:var(--wash);border-radius:5px}.session-note .btn{margin-left:8px}.auto-note{font-size:14px;color:#e3d3f7}.difference strong{color:var(--purple);font-size:14px;margin-right:4px}.choice-status{overflow-wrap:anywhere}.head-row h1{min-width:0}
+
+h1,h2,h3,.card,.panel,.result-head,.result-identity{overflow-wrap:anywhere}.badge{max-width:100%}.btn{overflow-wrap:anywhere}
+
+main>h1{margin-bottom:10px}.compact-catalog{gap:12px}.ability-card{padding:14px}.compact-title{display:flex;gap:10px;justify-content:space-between;align-items:start;margin-bottom:8px}.compact-title h2{font-size:21px;margin:0;min-width:0}.compact-title .tag{font-size:12px;flex-shrink:0;padding-top:4px}.ability-card .effect{margin-bottom:8px}.list-limit{font-size:14px!important;color:#665128;margin:0 0 10px;line-height:1.55}.ability-card .btn{margin-top:auto;width:100%}.kicker{color:var(--purple);font-size:13px;font-weight:800;margin:0 0 4px}.preview-effect{font-size:18px;margin:0 0 16px}.selection-fields{border:1.5px solid var(--line);border-radius:8px;background:var(--white);margin:0 0 14px}.selection-field{padding:12px 14px}.selection-field+.selection-field{border-top:1px solid var(--line)}.field-row{display:flex;justify-content:space-between;align-items:center;gap:12px}.field-row>div{min-width:0}.field-row h2{font-size:18px;margin:2px 0 0}.field-row h2 .small{display:inline-block;margin-left:5px}.field-label{font-size:13px;color:var(--muted)}.field-row .btn{flex-shrink:0;padding:10px 14px}.body-actions{font-size:15px;margin:8px 0 0}.single-mode{font-size:14px;color:var(--muted);border-top:1px solid var(--line);padding:10px 14px;margin:0}.preview-use .caution{margin-bottom:14px}.preview-use .list li{margin:3px 0;font-size:14px}.inline-editor{margin-top:14px;border-top:1px solid var(--line);padding-top:12px}.editor-title{display:flex;justify-content:space-between;align-items:center;gap:12px}.editor-title h2{font-size:20px}.compact-options{display:grid;gap:10px}.compact-option{border:1px solid var(--line);border-radius:6px;padding:12px;background:var(--paper);min-width:0;overflow-wrap:anywhere}.compact-option.selected{border-color:var(--purple);box-shadow:0 0 0 1px var(--purple)}.compact-option p{font-size:15px;margin-bottom:6px}.compact-option h3{font-size:18px;margin:0 0 6px}.option-title{display:flex;justify-content:space-between;gap:8px;align-items:start}.option-title .badge{font-size:12px;margin:0 0 8px}.compact-option .btn{width:100%;margin-top:6px}.compact-option strong{font-size:14px;color:var(--purple)}.compact-details{background:var(--white);border:1px solid var(--line);border-radius:8px;padding:4px 14px}.compact-details details:first-child{border-top:0}.compact-footer{display:flex;gap:10px;margin:14px 0 8px;flex-wrap:wrap}.compact-footer .btn{flex:1}.copy-fallback label{display:block;margin-bottom:8px;font-size:14px}.compact-catalog .selected{border-color:var(--purple)}
+@media(min-width:961px){.selection-fields,.preview-use,.compact-details,.compact-footer,.copy-fallback{max-width:840px}.compact-options{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){main{padding-top:16px}.compact-title h2{font-size:21px}.compact-title .tag{max-width:85px;text-align:right}.head-row h1{font-size:27px}.field-row{gap:8px}.field-row h2{font-size:18px}.compact-option .appearance{font-size:14px}.compact-footer{gap:8px}}
+
+</style></head>
+<body>
+<header class="masthead"><div><span class="eyebrow">JOJO CYOA</span><strong>STAND <span>CREATOR</span></strong></div><span class="edition">간결한 기본 코스</span></header>
+<main id="app"><p role="status">제작 카드를 준비하고 있습니다.</p></main>
+<noscript>JavaScript를 켠 브라우저에서 사용할 수 있습니다.</noscript>
+<footer class="page-footer">몸체와 사용법을 바꿔 나만의 운용을 만들어 보세요.</footer>
+<script type="module">
+// 콘텐츠의 기준은 기본 코스 v2.1. 비용은 미확정이며 원본 O 카드는 별도 단계로 추가하지 않는다.
+const RULE_FIELDS = ["effect", "target", "activation", "range", "duration", "termination", "limits"];
+const CATALOG = {
+  "schemaVersion": 1,
+  "source": {
+    "document": "stand-creator-basic-course-v2.1.md",
+    "sha256": "c59082e1a56bd4026e51e5962ee53090394350dae321fcd6c217d8aa353581b3"
+  },
+  "forms": {
+    "humanoid": "인간형",
+    "nonhuman": "비인간형",
+    "tool": "도구형",
+    "swarm": "군체형",
+    "worn": "장착형",
+    "integrated": "일체화형",
+    "phenomenon": "현상형",
+    "facility": "시설·영역형"
+  },
+  "statsLabels": [
+    "파괴력",
+    "스피드",
+    "사정거리",
+    "지속력",
+    "정밀동작성",
+    "성장성"
+  ],
+  "statsProfiles": {
+    "close": [
+      "A",
+      "B",
+      "D",
+      "B",
+      "C",
+      "D"
+    ],
+    "precise": [
+      "D",
+      "B",
+      "C",
+      "C",
+      "A",
+      "C"
+    ],
+    "ranged": [
+      "C",
+      "B",
+      "A",
+      "C",
+      "C",
+      "D"
+    ],
+    "environment": [
+      "B",
+      "C",
+      "C",
+      "A",
+      "D",
+      "C"
+    ],
+    "conditional": [
+      "E",
+      "C",
+      "B",
+      "A",
+      "C",
+      "B"
+    ]
+  },
+  "capabilities": {
+    "walk": "지상 이동",
+    "melee": "주먹질·발차기",
+    "strongMelee": "강한 근접 격투",
+    "grip": "잡기·부축",
+    "tools": "손작업·보통 도구 사용",
+    "flight": "비행·호버링",
+    "fire": "일반 스탠드 탄 사격",
+    "vision": "정상 시야 공유",
+    "push": "물건 밀기",
+    "smallCarry": "작은 물건 운반",
+    "wheels": "평지 바퀴 이동",
+    "held": "손에 들어 사용",
+    "joint": "여섯 개체의 합동 행동",
+    "umbrella": "실제 우산의 개폐·전달",
+    "worn": "사용자와 함께 이동",
+    "coreMove": "실체 핵의 지면 이동",
+    "fixed": "실제 바닥에 고정"
+  },
+  "operationTypes": {
+    "O01": "방호 외피",
+    "O02": "특수 이동",
+    "O03": "무장체",
+    "O04": "독립 분대 운용",
+    "O05": "자동 수행",
+    "O06": "모사 외피",
+    "O07": "특수 감각기관"
+  },
+  "commonRules": [
+    "사용자 취소·의식 상실·사망, 몸체 해제·기능 상실, 필요한 매개 파괴, 명시된 시간·거리 한도 이탈 때 능력이 종료한다. 달리는 선로의 운반체 종료 유예는 해당 결과에 적힌 규칙을 따른다.",
+    "이미 생긴 상처·파손·이동 결과는 종료해도 되돌아가지 않는다. 임시 생성물은 실물 재료로 보관할 수 없다. 몸체 재소환으로 손상·대기 시간을 지우지 못한다.",
+    "몸체·사용법은 제작 때 선택한 결과다. 실전 중 무료 변신이나 무제한 사용법 전환은 없다. 변경한 사용법이 대체한 권한과 이전 사용법을 임의로 합치지 못한다.",
+    "일반 행동은 실제 몸체 구조와 명시된 기능으로 한다. 외형 이름만으로 비행·사격·시야 공유·군체 독립 제어가 생기지 않는다.",
+    "능력치는 이미 가진 행동의 성능이다. 사정거리 등급은 능력·탄·정보의 범위를 일괄 늘리지 않으며 지속력은 명시 시간을 없애지 않는다. 성장성은 새로운 능력을 자동 추가하지 않는다.",
+    "몸체는 기존 세계관의 가시성을 따른다. 표식·방패·발판·칼날·빛덩이는 위치 표시를 갖는다. 추적의 꼬리의 기본 정보 출력은 사용자에게 사적으로 보인다."
+  ],
+  "abilities": [
+    {
+      "id": "E01",
+      "name": "비껴가는 충격",
+      "tag": "격투 · 간섭",
+      "symbol": "↗",
+      "description": "만진 물건에 화살표를 찍으면, 다음에 맞을 때 밀리는 방향이 바뀝니다.",
+      "examples": [
+        "방패의 각도를 흔들어 빈틈 만들기",
+        "작은 장애물을 옆으로 밀어 통로 열기"
+      ],
+      "caution": "분리된 물건 하나·10kg까지·첫 타격 한 번. 사람에게 직접 찍거나 피해를 없애지 못합니다.",
+      "rules": {
+        "effect": "표식 물건이 다음 외부 타격으로 움직일 때, 타격이 만들어 낸 밀림의 방향을 화살표 방향으로 한 번 바꾼다. 이미 가진 운동 전체를 정지·반사하거나 힘을 증폭하지 않는다.",
+        "target": "하나의 분리된 비생물 고체, 최대 10kg. 손에 든 물건은 가능하지만 사람의 몸·입은 옷·차체에 고정된 일부는 제외한다.",
+        "activation": "사용자 또는 몸체가 직접 만져 방향을 정한 화살표 하나를 붙인다. 준비 뒤 첫 외부 타격에 반응한다. 들기·떨어뜨리기만으로는 소비하지 않으며 바닥 충돌은 타격이다.",
+        "range": "몸체 활동: {{body.activityRange}}. 표식 물건은 사용자 10m 이내. 화살표는 물건에 고정돼 물건을 돌리면 방향도 돌아간다.",
+        "duration": "표식 설치부터 최대 30초, 그 안의 첫 타격 한 번.",
+        "termination": "타격 처리, 30초, 표식 제거·파괴, 물건 파괴·거리 이탈, 공통 종료. 이미 움직인 물건은 자연 운동을 계속한다.",
+        "limits": "활성 표식 하나. 물건이 무적이 되지 않는다. 첫 타격이 실제 밀림을 만들지 못해도 표식은 소비한다. 생물 조종·공간 삭제·자유 원격 이동은 없다."
+      },
+      "parameters": {
+        "maxMassKg": 10,
+        "activeTargets": 1,
+        "markSeconds": 30,
+        "targetRangeM": 10,
+        "triggerCount": 1,
+        "amplifiesForce": false
+      },
+      "bodyIds": [
+        "E01-h2",
+        "E01-t01"
+      ],
+      "usageIds": [
+        "E01-next"
+      ],
+      "defaultBodyId": "E01-h2",
+      "defaultUsageId": "E01-next",
+      "economy": {
+        "status": "unpriced",
+        "costSP": null,
+        "standardBudgetSP": 32
+      }
+    },
+    {
+      "id": "E02",
+      "name": "맞닿는 폭발",
+      "tag": "원거리 · 공격",
+      "symbol": "◈",
+      "description": "붉고 푸른 빛덩이를 보내 둘이 맞닿은 곳을 폭발시킵니다.",
+      "examples": [
+        "엄폐물 옆의 빈 공간 견제",
+        "퇴로를 막는 작은 장애물 제거"
+      ],
+      "caution": "한 쌍만. 하나가 먼저 막히면 불발이며 아군도 위험합니다. 사격 뒤 휴식이 필요합니다.",
+      "rules": {
+        "effect": "같은 쌍의 붉고 푸른 스탠드 에너지 덩이가 서로 닿으면 반경 2m의 순간 충격 폭발을 만든다. 혼자 사람·물건에 닿으면 피해 없이 소멸한다.",
+        "target": "능력이 생성한 한 쌍과 폭발 범위의 사람·물건·스탠드. 기존 물건을 폭탄으로 바꾸지 않는다. 실물 탄약과 다른 사용자의 생성물은 짝이 아니다.",
+        "activation": "선택 몸체의 두 발신점에서 한 쌍을 동시에 조준한 한 점으로 보낸다. 각자 직선 진행하고 발사 뒤 유도하지 않는다. 생성·전달은 고유 능력에 포함된다. {{body.delivery}}",
+        "range": "몸체 활동: {{body.activityRange}}. 각 빛덩이는 출발점에서 30m·사용자 100m 안, 폭발 반경은 접촉점 주변 2m다.",
+        "duration": "한 쌍의 비행은 최대 3초. 폭발은 순간이며, 쌍이 끝난 뒤 3초 동안 능력 재발사와 몸체의 일반 사격을 못 한다.",
+        "termination": "두 덩이의 접촉 폭발, 다른 충돌, 비행 시간·거리 이탈, 공통 종료. 하나가 사라지면 같은 쌍의 나머지도 사라진다.",
+        "limits": "한 쌍만 유지. 벽 관통·자동 추적·연쇄 증폭·아군 면역은 없다. 일반 사격과 능력 운용을 동시에 하지 않는다. 일반 사격의 휴식 중에는 능력도 시작하지 못한다. 모든 방어를 무시하는 폭발은 아니다."
+      },
+      "parameters": {
+        "activePairs": 1,
+        "projectileRangeM": 30,
+        "projectileUserRangeM": 100,
+        "explosionRadiusM": 2,
+        "projectileSeconds": 3,
+        "cooldownSeconds": 3,
+        "deliveryMode": "simultaneous"
+      },
+      "bodyIds": [
+        "E02-nf100",
+        "E02-h2",
+        "E02-t02"
+      ],
+      "usageIds": [
+        "E02-together",
+        "E02-attach"
+      ],
+      "defaultBodyId": "E02-nf100",
+      "defaultUsageId": "E02-together",
+      "economy": {
+        "status": "unpriced",
+        "costSP": null,
+        "standardBudgetSP": 32
+      }
+    },
+    {
+      "id": "E03",
+      "name": "꽃피는 방벽",
+      "tag": "방어 · 호위",
+      "symbol": "✿",
+      "description": "꽃잎 방패 세 장을 접고 펴며 필요한 방향을 가립니다.",
+      "examples": [
+        "이동 중 날아오는 파편 가리기",
+        "쓰러진 동료 곁에서 공격 방향 막기"
+      ],
+      "caution": "방어 방향은 직접 고릅니다. 한 세트 30초·파괴된 장 보충 불가. 사람을 실은 꽃잎을 들어 올리지는 못합니다.",
+      "rules": {
+        "effect": "각 최대 1m 지름의 물리 방패 세 장을 한 보호 중심 주위에 만든다. 두꺼운 강철 방패에 준하는 저항을 가지되 파괴될 수 있다. 접기·펴기·방향 배치가 가능하며, 발판으로 하중을 받지 않는 꽃잎은 중심의 이동을 따라간다.",
+        "target": "선택 몸체를 보호 중심으로 삼고 중심 2m 안의 꽃잎과 실제 닿는 사람·물건에 작용한다. 보호 중심은 {{body.centerDescription}}. 빈 공간 또는 보이는 표면 바깥에 펼치며 물체 내부에 생성하지 않는다.",
+        "activation": "명령으로 한 세트를 펼친다. 사용자가 방어 방향과 배치를 바꾸며, 꽃잎이 적·아군을 자동 판별하거나 공격을 알아서 막지는 않는다.",
+        "range": "몸체 활동: {{body.activityRange}}. 보호 중심은 사용자 10m 안, 꽃잎은 중심 2m 안. 발판으로 고정할 때 실제 고정 바닥 위 최대 2m이며 생성물을 다음 발판의 기준 바닥으로 삼지 못한다.",
+        "duration": "최초 펼침부터 최대 30초. 접기·재배치·동료 이동으로 시간을 갱신하지 않는다.",
+        "termination": "30초, 사용자 취소·공통 종료, 보호 중심 이탈·기능 상실. 파괴된 꽃잎은 그 장만 사라진다. 전체 종료 뒤 10초가 지나야 새 세트를 만든다. 중심에서 2m를 벗어난 고정 발판도 그 장만 사라진다.",
+        "limits": "세 장뿐이며 사라진 장을 세트 도중 보충하지 못한다. 각 장은 성인 한 명과 평소 들 수 있는 짐을 지지한다. 발판으로 사람·짐을 받치는 장은 자리에서 움직이지 못한다. 순간적인 피격은 이 발판 고정 조건이 아니다. 이동·재배치 때 고체 장애물을 통과하지 못하며 막힌 장은 멈추고 중심과의 범위를 넘으면 사라진다. 기체·열·정신 공격·공간 삭제를 막는 만능막은 아니며, 저절로 압착하거나 피해를 반사하는 기능은 없다."
+      },
+      "parameters": {
+        "maxPetals": 3,
+        "panelDiameterM": 1,
+        "centerRangeM": 10,
+        "petalRangeM": 2,
+        "raisedFootingM": 2,
+        "setSeconds": 30,
+        "cooldownSeconds": 10,
+        "automaticDefense": false,
+        "canMoveLoadedPanels": false,
+        "centerBinding": "body"
+      },
+      "bodyIds": [
+        "E03-w03",
+        "E03-h10",
+        "E03-i03"
+      ],
+      "usageIds": [
+        "E03-body-center",
+        "E03-escort"
+      ],
+      "defaultBodyId": "E03-w03",
+      "defaultUsageId": "E03-body-center",
+      "economy": {
+        "status": "unpriced",
+        "costSP": null,
+        "standardBudgetSP": 32
+      }
+    },
+    {
+      "id": "E04",
+      "name": "솟는 무대",
+      "tag": "환경 · 승강",
+      "symbol": "▥",
+      "description": "바닥 두 곳 위에 발판을 만들고 한쪽을 올릴 때 다른 쪽을 내립니다.",
+      "examples": [
+        "사람을 높은 작업 위치로 올리기",
+        "높낮이로 사격선과 시야 바꾸기"
+      ],
+      "caution": "설치 위치는 고정됩니다. 한쪽이 막히면 둘 다 정지. 30초 뒤 발판이 사라져 내려올 길이 필요합니다.",
+      "rules": {
+        "effect": "실제 바닥을 뜯거나 변형하지 않고, 1m×1m의 스탠드 발판 두 장을 만든다. 선택한 장은 최대 3m 높이로 올리고, 반대쪽은 바닥 높이로 내리는 동작을 함께 실행한다.",
+        "target": "고정된 실제 바닥 두 곳과 각 장 위의 적재물. 한 장은 성인 한 명과 평소 들 수 있는 짐을 지지한다. 설치 시 이미 올라 있는 대상도 상한 안이면 이동한다.",
+        "activation": "{{body.installation}} 처음 두 장은 바닥 높이다. 이후 어느 쪽을 높일지 명령하며 반대쪽은 바닥 높이로 내린다. 중간 정지는 두 장을 함께 멈춘다.",
+        "range": "몸체 활동: {{body.activityRange}}. 제어점·발판 전체는 사용자 10m 안, 설치점은 제어점 5m 안. 상승한 부분도 사용자 10m 안이며 두 설치점은 이동하지 않는다.",
+        "duration": "두 곳 설치 완료부터 최대 30초. 한 동작은 원래 위치에서 목표 높이까지 3초에 걸쳐 진행한다. 한쪽이 이미 바닥 또는 꼭대기면 그 장은 그 자리에 머문다. 같은 세트를 반복 조작해도 30초를 갱신하지 않는다.",
+        "termination": "30초, 사용자 취소, {{body.controlLoss}}·설치 바닥의 파괴/이동, 거리 이탈, 공통 종료. 발판이 사라지면 실제 바닥과 중력을 따른다.",
+        "limits": "수평 운반·중력 변경·건물 전체 변형은 없다. 어느 한 장의 하중 초과 또는 발판·탑승자·짐의 고체 장애물 접촉이 이동을 막으면 두 장 모두 현재 높이에서 멈춘다. 방해가 해소된 뒤 새 명령으로 다시 움직일 수 있다. 발판을 기준 바닥으로 새 발판을 쌓지 못한다. 자동 적 판별·순간 압사·낙하 면역은 없다."
+      },
+      "parameters": {
+        "platformCount": 2,
+        "platformWidthM": 1,
+        "platformDepthM": 1,
+        "heightMaxM": 3,
+        "siteRangeM": 5,
+        "userAllRangeM": 10,
+        "setSeconds": 30,
+        "travelSeconds": 3,
+        "controlMode": "paired",
+        "maxMovingPlatforms": 2,
+        "bothStopIfBlocked": true
+      },
+      "bodyIds": [
+        "E04-f04",
+        "E04-a04-h"
+      ],
+      "usageIds": [
+        "E04-paired",
+        "E04-individual"
+      ],
+      "defaultBodyId": "E04-f04",
+      "defaultUsageId": "E04-paired",
+      "economy": {
+        "status": "unpriced",
+        "costSP": null,
+        "standardBudgetSP": 32
+      }
+    },
+    {
+      "id": "E05",
+      "name": "달리는 선로",
+      "tag": "이동 · 구조",
+      "symbol": "⇆",
+      "description": "두 끝점을 이어 사람이나 물건을 태우고 직선 길을 왕복합니다.",
+      "examples": [
+        "다친 동료를 틈 너머로 보내기",
+        "짐을 반대편 작업 위치로 운반하기"
+      ],
+      "caution": "먼저 두 끝점을 준비합니다. 한 번에 한 명과 짐·빈 직선 통로만. 종료 때 운반체를 내려올 방법이 필요합니다.",
+      "rules": {
+        "effect": "두 고정 표식 사이에 직선 선로와 1m×1m 운반 발판 하나를 만든다. 도착하면 멈추며 같은 선로에서 재운행할 수 있다.",
+        "target": "사람 한 명과 평소 들 수 있는 짐, 또는 성인 한 명이 혼자 옮길 수 있는 물건 하나. 스스로 타거나 실제로 실어야 하며, 강제 탑승·순간이동은 없다.",
+        "activation": "사용자나 몸체가 고정된 실제 표면 두 곳을 차례로 직접 만진다. 첫 표식 뒤 30초 안에 둘째를 등록한다. 각 표식 앞에 발판 공간과 두 점 사이 빈 통로가 필요하다. 둘째 등록 때 거리·공간·통로 조건이 맞지 않으면 준비 표식 둘을 종료하고 새로 준비한다. 연결되면 발판은 첫 끝점에 생기며 사용자 명령으로 운행한다.",
+        "range": "몸체 활동: {{body.activityRange}}. 끝점 간 최대 15m. 준비 표식과 완성 선로·운반체 전체는 사용자 20m 안. 등록은 실제 접촉 또는 선택 몸체에 명시된 표식 투사 범위를 따른다.",
+        "duration": "첫 표식의 준비는 최대 30초, 연결 완료부터 선로는 새로 30초. 한 편도 운행은 최대 5초. 연결 후 재운행으로 30초를 갱신하지 않는다.",
+        "termination": "표식 제거·설치 표면의 이동/파괴, 시간·거리·공통 종료. 통로 차단·적재 상한 초과는 정지 후 선로 종료. 기본 운반 발판만 정지 위치에 3초 더 남았다가 사라진다. 그동안 운행·추가 적재는 불가능하며 탈출 성공은 보장하지 않는다.",
+        "limits": "한 노선·한 운반체·한 명. 장애물 우회·곡선 노선·벽 관통·무제한 인원은 없다. 남이 타더라도 운행 명령은 사용자만 한다. 선로 이동에 몸체의 달리기 성능을 더해 두 배로 가속하지 않는다."
+      },
+      "parameters": {
+        "routeCount": 1,
+        "carrierCount": 1,
+        "maxPeople": 1,
+        "routeLengthM": 15,
+        "routeUserRangeM": 20,
+        "prepSeconds": 30,
+        "setSeconds": 30,
+        "oneWaySeconds": 5,
+        "exitGraceSeconds": 3,
+        "wallPass": false,
+        "anchorMode": "touch",
+        "carrierKind": "created-platform"
+      },
+      "bodyIds": [
+        "E05-h10",
+        "E05-a05-r",
+        "E05-a05-t",
+        "E05-a05-f"
+      ],
+      "usageIds": [
+        "E05-direct",
+        "E05-projected",
+        "E05-station"
+      ],
+      "defaultBodyId": "E05-h10",
+      "defaultUsageId": "E05-direct",
+      "economy": {
+        "status": "unpriced",
+        "costSP": null,
+        "standardBudgetSP": 32
+      }
+    },
+    {
+      "id": "E06",
+      "name": "추적의 꼬리",
+      "tag": "정보 · 추적",
+      "symbol": "◎",
+      "description": "만져 표시한 한 대상의 현재 위치와 최근 지나간 길을 확인합니다.",
+      "examples": [
+        "엄폐 뒤로 간 대상의 위치 확인",
+        "연기 속의 미리 표시한 동료 찾기"
+      ],
+      "caution": "먼저 접촉·보이는 표식 하나·대상 30m 안. 표식 제거나 이탈로 끝나며 냄새 자동추적은 아닙니다.",
+      "rules": {
+        "effect": "표식의 현재 위치를 가리키는 표시와, 설치 이후 기록된 최근 30초 이동 경로를 사용자에게만 보여 준다. 가림막 너머 위치도 표시하지만 주변 지형·시야·신원·생각은 보여 주지 않는다.",
+        "target": "표식이 실제 붙은 피부·몸체·물건 하나. 옷에 붙이면 그 옷을 따라가며 착용자의 신원을 추적하는 것은 아니다.",
+        "activation": "사용자나 몸체가 직접 접촉해 눈에 보이는 표식 하나를 붙인다. 설치 순간부터 기록한다. 새 표식 설치는 기존 추적을 끝내고 하나를 새로 시작한다.",
+        "range": "몸체 활동: {{body.activityRange}}. 표식 대상은 사용자 30m 안. 몸체 활동 범위가 30m가 되는 것은 아니다.",
+        "duration": "표식 설치부터 최대 3분. 정보는 늘 최근 30초이며 설치 이전의 과거는 없다.",
+        "termination": "표식 제거·파괴, 대상의 30m 이탈, 3분, 공통 종료. 정보도 사라지고 범위에 다시 들어와도 자동 재획득하지 않는다. 표식을 다른 대상에 옮기면 기존 추적이 끝나 새 등록이 필요하다.",
+        "limits": "활성 표식 하나. 자동 공격·무표식 탐지·냄새 추적·미래 읽기·경로의 실물화는 없다. 기본 몸체는 비행·일반 시야 공유·자율 전투를 주지 않는다."
+      },
+      "parameters": {
+        "activeTargets": 1,
+        "markerRangeM": 30,
+        "markSeconds": 180,
+        "historySeconds": 30,
+        "unmarkedDetection": false,
+        "privateInformation": true,
+        "publicTrail": false,
+        "reacquire": false
+      },
+      "bodyIds": [
+        "E06-ng10",
+        "E06-h10",
+        "E06-t06",
+        "E06-w06",
+        "E06-s06"
+      ],
+      "usageIds": [
+        "E06-private",
+        "E06-public"
+      ],
+      "defaultBodyId": "E06-ng10",
+      "defaultUsageId": "E06-private",
+      "economy": {
+        "status": "unpriced",
+        "costSP": null,
+        "standardBudgetSP": 32
+      }
+    },
+    {
+      "id": "E07",
+      "name": "남는 칼날",
+      "tag": "절단 · 견제",
+      "symbol": "╱",
+      "description": "휘둘러 그은 선이 그 자리에 3초 동안 칼날로 남습니다.",
+      "examples": [
+        "상대의 회피 경로에 선 남기기",
+        "구조 현장의 줄·얇은 장애물 절단"
+      ],
+      "caution": "한 선만·새 선은 앞선을 대체. 아군도 위험하며 모든 물질을 베지는 못합니다.",
+      "rules": {
+        "effect": "최대 2m의 직선 또는 완만한 곡선 한 개를 에너지 칼날로 만든다. 실제 접촉에 절단 공격을 가하며 모든 물질의 절단을 보장하지 않는다.",
+        "target": "선에 실제 닿는 고체·생물·스탠드. 공간·기체·기억은 베지 않는다. 물체 내부나 가려진 곳에 선을 생성하지 않는다.",
+        "activation": "{{body.drawing}} 보이는 공간과 표면까지 즉시 한 선을 만든다. 형성 중 대상 표면에 닿으면 그때부터 벨 수 있다. 별도 표식 준비가 없고 주먹질마다 자동 생성되지 않는다.",
+        "range": "몸체 활동: {{body.activityRange}}. 선 전체는 그리기 중심 3m·사용자 10m 안을 동시에 지킨다. 사용자 10m는 유지 한도이며 실제 몸체 활동 범위를 늘리지 않는다.",
+        "duration": "한 선은 생성 위치에 고정돼 최대 3초. 몸체가 움직여도 선의 위치는 그대로다. 별도의 재생성 대기는 없지만 새 선은 기존 선을 대체한다.",
+        "termination": "3초, 새 선 생성, 두 거리 한도 이탈, 몸체 기능 상실·공통 종료. 상처·파손은 남는다.",
+        "limits": "한 선뿐이고 아군 면역·발판·구속줄·자동 조준이 없다. 강한 몸체 타격과 칼날 공격의 등급을 더해 두 배 위력으로 계산하지 않는다. ‘3초’는 한 선의 수명이지 한 전투 전체의 사용 한도는 아니다."
+      },
+      "parameters": {
+        "activeLines": 1,
+        "lengthMaxM": 2,
+        "bodyLineRangeM": 3,
+        "userLineRangeM": 10,
+        "lineSeconds": 3,
+        "lineFollows": false,
+        "retainedTrail": true,
+        "infiniteCut": false
+      },
+      "bodyIds": [
+        "E07-h2",
+        "E07-t07",
+        "E07-p07"
+      ],
+      "usageIds": [
+        "E07-fixed",
+        "E07-follow"
+      ],
+      "defaultBodyId": "E07-h2",
+      "defaultUsageId": "E07-fixed",
+      "economy": {
+        "status": "unpriced",
+        "costSP": null,
+        "standardBudgetSP": 32
+      }
+    }
+  ],
+  "bodies": [
+    {
+      "id": "E01-h2",
+      "abilityId": "E01",
+      "name": "권투 몸체",
+      "form": "humanoid",
+      "appearance": "관절마다 화살표가 새겨진 단단한 권투 선수 몸체.",
+      "capabilities": [
+        "walk",
+        "melee",
+        "strongMelee",
+        "grip",
+        "tools"
+      ],
+      "activityRange": "사용자 2m 안",
+      "statsProfile": "close",
+      "delivery": "손이나 사용자 직접 접촉으로 화살표를 찍는다.",
+      "limitations": [
+        "비행·일반 사격·시야 공유 없음"
+      ],
+      "ruleOverrides": {},
+      "parameterOverrides": {},
+      "operationRelations": {
+        "O01": "별도 방호 외피 없음. 꽃잎 방어는 능력 효과다.",
+        "O02": "별도 특수 이동 없음. 선로 이동은 능력 효과다.",
+        "O03": "별도 일반 무장 없음",
+        "O04": "독립 분대 운용 없음",
+        "O05": "별도 몸체 자동 수행 없음. 능력의 사건 반응·정보 갱신과 구별한다.",
+        "O06": "모사 외피 없음. 우산 결합이나 자유 장식은 외관 복제 아님.",
+        "O07": "특수 감각 없음. 카메라는 정상 시야 공유, 표식 정보는 능력 효과다."
+      },
+      "usageIds": [
+        "E01-next"
+      ],
+      "defaultUsageId": "E01-next"
+    },
+    {
+      "id": "E01-t01",
+      "abilityId": "E01",
+      "name": "화살표 접촉봉",
+      "form": "tool",
+      "appearance": "끝에 화살표 문양이 있는 1m 길이의 봉.",
+      "capabilities": [
+        "held"
+      ],
+      "activityRange": "사용자가 손에 든 1m 봉의 실제 접촉 범위",
+      "statsProfile": "precise",
+      "delivery": "봉 끝 또는 사용자 손의 실제 접촉으로 화살표를 찍는다.",
+      "limitations": [
+        "한 손 점유·독립 이동·별도 격투 몸체 없음",
+        "비행·일반 사격·시야 공유 없음"
+      ],
+      "ruleOverrides": {},
+      "parameterOverrides": {},
+      "operationRelations": {
+        "O01": "별도 방호 외피 없음. 꽃잎 방어는 능력 효과다.",
+        "O02": "별도 특수 이동 없음. 선로 이동은 능력 효과다.",
+        "O03": "물리 도구 사용과 대응하나 초자연적 칼날은 능력 효과다.",
+        "O04": "독립 분대 운용 없음",
+        "O05": "별도 몸체 자동 수행 없음. 능력의 사건 반응·정보 갱신과 구별한다.",
+        "O06": "모사 외피 없음. 우산 결합이나 자유 장식은 외관 복제 아님.",
+        "O07": "특수 감각 없음. 카메라는 정상 시야 공유, 표식 정보는 능력 효과다."
+      },
+      "usageIds": [
+        "E01-next"
+      ],
+      "defaultUsageId": "E01-next"
+    },
+    {
+      "id": "E02-nf100",
+      "abilityId": "E02",
+      "name": "비행 사수",
+      "form": "nonhuman",
+      "appearance": "두 날개 끝에 발사구와 카메라 눈이 있는 금속 가오리.",
+      "capabilities": [
+        "flight",
+        "fire",
+        "vision"
+      ],
+      "activityRange": "사용자 100m 안",
+      "statsProfile": "ranged",
+      "delivery": "두 날개 끝에서 빛덩이를 보낸다.",
+      "limitations": [
+        "손작업·수송·열/이산화탄소 탐지·자동 조준 없음",
+        "일반 탄은 출발점 30m·사용자 100m 안에서 충돌/거리 이탈 때 소멸. 최대 3초 연사·3초 휴식이며 고유 능력과 사격·휴식을 공유한다."
+      ],
+      "ruleOverrides": {},
+      "parameterOverrides": {},
+      "operationRelations": {
+        "O01": "별도 방호 외피 없음. 꽃잎 방어는 능력 효과다.",
+        "O02": "비행·호버링 포함",
+        "O03": "일반 사격 포함. v2.1의 연사·휴식 계약이며 원본 O03과 동일한 탄 계약은 아니다.",
+        "O04": "독립 분대 운용 없음",
+        "O05": "별도 몸체 자동 수행 없음. 능력의 사건 반응·정보 갱신과 구별한다.",
+        "O06": "모사 외피 없음. 우산 결합이나 자유 장식은 외관 복제 아님.",
+        "O07": "특수 감각 없음. 카메라는 정상 시야 공유, 표식 정보는 능력 효과다."
+      },
+      "usageIds": [
+        "E02-together",
+        "E02-attach"
+      ],
+      "defaultUsageId": "E02-together"
+    },
+    {
+      "id": "E02-h2",
+      "abilityId": "E02",
+      "name": "두 색 손끝",
+      "form": "humanoid",
+      "appearance": "한 손은 붉고 다른 손은 푸르게 빛나는 근접 격투 몸체.",
+      "capabilities": [
+        "walk",
+        "melee",
+        "strongMelee",
+        "grip",
+        "tools"
+      ],
+      "activityRange": "사용자 2m 안",
+      "statsProfile": "close",
+      "delivery": "두 손끝에서 멀리 보낸다.",
+      "limitations": [
+        "비행·일반 탄 사격·시야 공유 없음",
+        "가까이 폭발시키면 사용자도 위험"
+      ],
+      "ruleOverrides": {},
+      "parameterOverrides": {},
+      "operationRelations": {
+        "O01": "별도 방호 외피 없음. 꽃잎 방어는 능력 효과다.",
+        "O02": "별도 특수 이동 없음. 선로 이동은 능력 효과다.",
+        "O03": "별도 일반 무장 없음",
+        "O04": "독립 분대 운용 없음",
+        "O05": "별도 몸체 자동 수행 없음. 능력의 사건 반응·정보 갱신과 구별한다.",
+        "O06": "모사 외피 없음. 우산 결합이나 자유 장식은 외관 복제 아님.",
+        "O07": "특수 감각 없음. 카메라는 정상 시야 공유, 표식 정보는 능력 효과다."
+      },
+      "usageIds": [
+        "E02-together",
+        "E02-attach"
+      ],
+      "defaultUsageId": "E02-together"
+    },
+    {
+      "id": "E02-t02",
+      "abilityId": "E02",
+      "name": "두 색 발사기",
+      "form": "tool",
+      "appearance": "두 발신구가 나란히 달린 손에 드는 발사기.",
+      "capabilities": [
+        "held",
+        "fire"
+      ],
+      "activityRange": "사용자가 손에 들어 사용",
+      "statsProfile": "ranged",
+      "delivery": "두 발신구에서 빛덩이를 보낸다.",
+      "limitations": [
+        "독립 이동·비행·시야 공유·별도 격투 몸체 없음",
+        "일반 탄은 출발점 30m·사용자 100m 안에서 충돌/거리 이탈 때 소멸. 최대 3초 연사·3초 휴식이며 고유 능력과 사격·휴식을 공유한다."
+      ],
+      "ruleOverrides": {},
+      "parameterOverrides": {},
+      "operationRelations": {
+        "O01": "별도 방호 외피 없음. 꽃잎 방어는 능력 효과다.",
+        "O02": "별도 특수 이동 없음. 선로 이동은 능력 효과다.",
+        "O03": "일반 사격 포함. v2.1의 연사·휴식 계약이며 원본 O03과 동일한 탄 계약은 아니다.",
+        "O04": "독립 분대 운용 없음",
+        "O05": "별도 몸체 자동 수행 없음. 능력의 사건 반응·정보 갱신과 구별한다.",
+        "O06": "모사 외피 없음. 우산 결합이나 자유 장식은 외관 복제 아님.",
+        "O07": "특수 감각 없음. 카메라는 정상 시야 공유, 표식 정보는 능력 효과다."
+      },
+      "usageIds": [
+        "E02-together",
+        "E02-attach"
+      ],
+      "defaultUsageId": "E02-together"
+    },
+    {
+      "id": "E03-w03",
+      "abilityId": "E03",
+      "name": "착용 꽃갑옷",
+      "form": "worn",
+      "appearance": "몸에 붙는 얇은 꽃틀에서 세 꽃잎 방패가 펼쳐진다.",
+      "capabilities": [
+        "worn"
+      ],
+      "activityRange": "사용자에게 착용",
+      "statsProfile": "precise",
+      "delivery": "명령으로 꽃잎을 펼치고 방향을 직접 조작한다.",
+      "limitations": [
+        "착용 자체의 전신 방어력·근력·달리기·시력 상승 없음",
+        "방어는 실제 배치한 꽃잎만 제공"
+      ],
+      "ruleOverrides": {},
+      "parameterOverrides": {},
+      "operationRelations": {
+        "O01": "별도 방호 외피 없음. 꽃잎 방어는 능력 효과다.",
+        "O02": "별도 특수 이동 없음. 선로 이동은 능력 효과다.",
+        "O03": "별도 일반 무장 없음",
+        "O04": "독립 분대 운용 없음",
+        "O05": "별도 몸체 자동 수행 없음. 능력의 사건 반응·정보 갱신과 구별한다.",
+        "O06": "모사 외피 없음. 우산 결합이나 자유 장식은 외관 복제 아님.",
+        "O07": "특수 감각 없음. 카메라는 정상 시야 공유, 표식 정보는 능력 효과다."
+      },
+      "centerDescription": "사용자에게 착용된 몸체",
+      "usageIds": [
+        "E03-body-center",
+        "E03-escort"
+      ],
+      "defaultUsageId": "E03-body-center"
+    },
+    {
+      "id": "E03-h10",
+      "abilityId": "E03",
+      "name": "꽃을 든 호위자",
+      "form": "humanoid",
+      "appearance": "어깨에 꽃잎 고리를 두르고 손으로 동료를 부축하는 몸체.",
+      "capabilities": [
+        "walk",
+        "melee",
+        "grip",
+        "tools"
+      ],
+      "activityRange": "사용자 10m 안",
+      "statsProfile": "precise",
+      "delivery": "명령으로 꽃잎을 펼치고 방향을 직접 조작한다.",
+      "limitations": [
+        "강한 권투 몸체의 성능·비행·사격·시야 공유 없음"
+      ],
+      "ruleOverrides": {},
+      "parameterOverrides": {},
+      "operationRelations": {
+        "O01": "별도 방호 외피 없음. 꽃잎 방어는 능력 효과다.",
+        "O02": "별도 특수 이동 없음. 선로 이동은 능력 효과다.",
+        "O03": "별도 일반 무장 없음",
+        "O04": "독립 분대 운용 없음",
+        "O05": "별도 몸체 자동 수행 없음. 능력의 사건 반응·정보 갱신과 구별한다.",
+        "O06": "모사 외피 없음. 우산 결합이나 자유 장식은 외관 복제 아님.",
+        "O07": "특수 감각 없음. 카메라는 정상 시야 공유, 표식 정보는 능력 효과다."
+      },
+      "centerDescription": "이동하는 인간형 몸체",
+      "usageIds": [
+        "E03-body-center",
+        "E03-escort"
+      ],
+      "defaultUsageId": "E03-body-center"
+    },
+    {
+      "id": "E03-i03",
+      "abilityId": "E03",
+      "name": "꽃우산",
+      "form": "integrated",
+      "appearance": "실제 우산 하나에 결합해 우산 둘레로 꽃잎이 펼쳐진다.",
+      "capabilities": [
+        "umbrella"
+      ],
+      "activityRange": "실제 우산은 사용자 10m 안",
+      "statsProfile": "precise",
+      "delivery": "접촉해 우산에 결합하고 사용자 명령으로 조작한다.",
+      "limitations": [
+        "우산 혼자 이동·비행·시야 공유 없음",
+        "다른 사람이 들어도 조작자는 사용자·우산 파괴/결합 해제 때 종료"
+      ],
+      "ruleOverrides": {
+        "termination": "30초, 사용자 취소·공통 종료, 보호 중심 이탈·기능 상실. 파괴된 꽃잎은 그 장만 사라진다. 전체 종료 뒤 10초가 지나야 새 세트를 만든다. 중심에서 2m를 벗어난 고정 발판도 그 장만 사라진다. 실제 우산 파괴·결합 해제 때도 종료한다."
+      },
+      "parameterOverrides": {},
+      "operationRelations": {
+        "O01": "별도 방호 외피 없음. 꽃잎 방어는 능력 효과다.",
+        "O02": "별도 특수 이동 없음. 선로 이동은 능력 효과다.",
+        "O03": "별도 일반 무장 없음",
+        "O04": "독립 분대 운용 없음",
+        "O05": "별도 몸체 자동 수행 없음. 능력의 사건 반응·정보 갱신과 구별한다.",
+        "O06": "모사 외피 없음. 우산 결합이나 자유 장식은 외관 복제 아님.",
+        "O07": "특수 감각 없음. 카메라는 정상 시야 공유, 표식 정보는 능력 효과다."
+      },
+      "centerDescription": "결합한 실제 우산",
+      "usageLabels": {
+        "E03-body-center": "우산 곁에 펼치기"
+      },
+      "usageIds": [
+        "E03-body-center"
+      ],
+      "defaultUsageId": "E03-body-center"
+    },
+    {
+      "id": "E04-f04",
+      "abilityId": "E04",
+      "name": "바닥 제어함",
+      "form": "facility",
+      "appearance": "바닥에 고정된 작은 보라색 제어함과 그 주변 두 발판.",
+      "capabilities": [
+        "fixed"
+      ],
+      "activityRange": "고정 제어함·발판 전체 사용자 10m 안",
+      "statsProfile": "environment",
+      "delivery": "고정 제어점에서 발판 명령을 내린다.",
+      "limitations": [
+        "이동·격투·잡기 없음",
+        "노출 장치는 공격받을 수 있으며 몸체 피해 전제를 적용"
+      ],
+      "ruleOverrides": {},
+      "parameterOverrides": {},
+      "operationRelations": {
+        "O01": "별도 방호 외피 없음. 꽃잎 방어는 능력 효과다.",
+        "O02": "별도 특수 이동 없음. 선로 이동은 능력 효과다.",
+        "O03": "별도 일반 무장 없음",
+        "O04": "독립 분대 운용 없음",
+        "O05": "별도 몸체 자동 수행 없음. 능력의 사건 반응·정보 갱신과 구별한다.",
+        "O06": "모사 외피 없음. 우산 결합이나 자유 장식은 외관 복제 아님.",
+        "O07": "특수 감각 없음. 카메라는 정상 시야 공유, 표식 정보는 능력 효과다."
+      },
+      "installation": "사용자가 직접 만진 실제 바닥에 제어함을 설치하고, 그 제어함 5m 안의 보이는 바닥 두 위치를 정한다.",
+      "controlLoss": "제어함 파괴",
+      "usageIds": [
+        "E04-paired",
+        "E04-individual"
+      ],
+      "defaultUsageId": "E04-paired"
+    },
+    {
+      "id": "E04-a04-h",
+      "abilityId": "E04",
+      "name": "무대 설치자",
+      "form": "humanoid",
+      "appearance": "손바닥으로 바닥에 제어 표식을 찍는 정밀한 무대 기사.",
+      "capabilities": [
+        "walk",
+        "melee",
+        "grip",
+        "tools"
+      ],
+      "activityRange": "사용자 10m 안",
+      "statsProfile": "precise",
+      "delivery": "접촉 설치 뒤 몸체가 이동해도 두 발판 위치는 고정이다.",
+      "limitations": [
+        "강한 권투 몸체 성능·비행·사격·시야 공유 없음",
+        "몸체와 제어 표식을 각각 보호해야 함"
+      ],
+      "ruleOverrides": {},
+      "parameterOverrides": {},
+      "operationRelations": {
+        "O01": "별도 방호 외피 없음. 꽃잎 방어는 능력 효과다.",
+        "O02": "별도 특수 이동 없음. 선로 이동은 능력 효과다.",
+        "O03": "별도 일반 무장 없음",
+        "O04": "독립 분대 운용 없음",
+        "O05": "별도 몸체 자동 수행 없음. 능력의 사건 반응·정보 갱신과 구별한다.",
+        "O06": "모사 외피 없음. 우산 결합이나 자유 장식은 외관 복제 아님.",
+        "O07": "특수 감각 없음. 카메라는 정상 시야 공유, 표식 정보는 능력 효과다."
+      },
+      "installation": "인간형 또는 사용자 손이 실제 바닥을 만져 제어 표식을 하나 설치하고, 표식 5m 안의 보이는 바닥 두 위치를 정한다.",
+      "controlLoss": "제어 표식 제거",
+      "usageIds": [
+        "E04-paired",
+        "E04-individual"
+      ],
+      "defaultUsageId": "E04-paired"
+    },
+    {
+      "id": "E05-h10",
+      "abilityId": "E05",
+      "name": "노선 기사",
+      "form": "humanoid",
+      "appearance": "손으로 끝점을 찍고 승객을 별도 운반 발판에 태우는 기사.",
+      "capabilities": [
+        "walk",
+        "melee",
+        "grip",
+        "tools"
+      ],
+      "activityRange": "사용자 10m 안",
+      "statsProfile": "precise",
+      "delivery": "사용자나 몸체가 두 고정 표면을 차례로 직접 만진다.",
+      "limitations": [
+        "비행·일반 사격·시야 공유·강한 권투 몸체 성능 없음"
+      ],
+      "ruleOverrides": {},
+      "parameterOverrides": {},
+      "operationRelations": {
+        "O01": "별도 방호 외피 없음. 꽃잎 방어는 능력 효과다.",
+        "O02": "별도 특수 이동 없음. 선로 이동은 능력 효과다.",
+        "O03": "별도 일반 무장 없음",
+        "O04": "독립 분대 운용 없음",
+        "O05": "별도 몸체 자동 수행 없음. 능력의 사건 반응·정보 갱신과 구별한다.",
+        "O06": "모사 외피 없음. 우산 결합이나 자유 장식은 외관 복제 아님.",
+        "O07": "특수 감각 없음. 카메라는 정상 시야 공유, 표식 정보는 능력 효과다."
+      },
+      "carrierDescription": "별도 운반 발판",
+      "usageIds": [
+        "E05-direct"
+      ],
+      "defaultUsageId": "E05-direct"
+    },
+    {
+      "id": "E05-a05-r",
+      "abilityId": "E05",
+      "name": "한 사람 운반차",
+      "form": "nonhuman",
+      "appearance": "한 사람이 타는 작은 바퀴 차량이며 차 자체가 유일한 운반체다.",
+      "capabilities": [
+        "wheels"
+      ],
+      "activityRange": "지상 이동·선로 운행 모두 사용자 10m 안",
+      "statsProfile": "precise",
+      "delivery": "사용자 손 또는 차 앞 접촉부로 두 고정 끝점을 등록한다.",
+      "limitations": [
+        "차+별도 운반 발판 동시 제공 없음",
+        "선로 밖 비행·벽 통과·일반 무장 없음",
+        "원격 승객 운반 때 차의 사용자 10m 제한도 유지"
+      ],
+      "ruleOverrides": {
+        "effect": "두 고정 표식 사이에 직선 선로를 만들고 차 몸체 하나를 유일한 운반체로 쓴다. 별도 운반 발판은 만들지 않는다. 도착하면 멈추며 같은 선로에서 재운행할 수 있다.",
+        "activation": "사용자 손이나 차 앞 접촉부로 고정된 실제 표면 두 곳을 차례로 직접 등록한다. 첫 등록 후 30초 안에 둘째 등록. 끝점·선로의 빈 공간과 통로 조건을 지키며 부적격 둘째 등록은 준비를 종료한다. 차를 한 끝점에 두고 사용자 명령으로 운행한다.",
+        "termination": "표식 제거·설치 표면 이동/파괴·시간/거리 이탈·공통 종료, 통로 차단·적재 상한 초과 때 선로가 종료한다. 차는 정지 위치에서 3초간 능력 지지를 받은 뒤 평범한 실체 몸체로 돌아가 중력·바퀴 이동을 따른다. 차 해제·기능 상실 때 지지 유예도 즉시 종료한다. 차는 선로 종료만으로 사라지지 않으며 안전 착지를 보장하지 않는다."
+      },
+      "parameterOverrides": {
+        "carrierKind": "body-vehicle"
+      },
+      "operationRelations": {
+        "O01": "별도 방호 외피 없음. 꽃잎 방어는 능력 효과다.",
+        "O02": "별도 특수 이동 없음. 선로 이동은 능력 효과다.",
+        "O03": "별도 일반 무장 없음",
+        "O04": "독립 분대 운용 없음",
+        "O05": "별도 몸체 자동 수행 없음. 능력의 사건 반응·정보 갱신과 구별한다.",
+        "O06": "모사 외피 없음. 우산 결합이나 자유 장식은 외관 복제 아님.",
+        "O07": "특수 감각 없음. 카메라는 정상 시야 공유, 표식 정보는 능력 효과다."
+      },
+      "carrierDescription": "차 몸체 하나",
+      "usageIds": [
+        "E05-direct"
+      ],
+      "defaultUsageId": "E05-direct"
+    },
+    {
+      "id": "E05-a05-t",
+      "abilityId": "E05",
+      "name": "표식 발사기",
+      "form": "tool",
+      "appearance": "보이는 고정 표면에 비공격성 표식을 보내는 손 발사기.",
+      "capabilities": [
+        "held"
+      ],
+      "activityRange": "사용자가 손에 들어 사용",
+      "statsProfile": "precise",
+      "delivery": "보이는 고정 표면에 비공격성 표식탄을 쏘아 끝점을 등록한다.",
+      "limitations": [
+        "일반 공격 탄·자동 표면 판별·물건 잡기·독립 이동 없음"
+      ],
+      "ruleOverrides": {
+        "activation": "비공격성 표식탄을 차례로 쏘아 첫 적격 고정 표면에 등록한다. 부적격 표면 충돌은 표식 없이 소멸한다. 발사기 10m 안의 보이는 표면에만 투사하며 탄 비행은 최대 3초다. 첫 등록 후 30초 안에 둘째 등록. 공간·거리·통로가 부적격이면 준비를 종료한다. 연결되면 첫 끝점의 운반 발판을 사용자 명령으로 운행한다.",
+        "range": "몸체는 사용자가 손에 든다. 표식 투사는 발사기 10m 안의 보이는 적격 고정 표면. 준비 표식과 완성 선로·발판은 사용자 20m, 끝점 간 15m 이내다.",
+        "termination": "표식탄 충돌·비행 3초 만료는 해당 탄 소멸이며 적격 등록이 없으면 선로를 만들지 않는다. 표식 제거·설치 표면 이동/파괴·시간/거리/공통 종료, 통로 차단·적재 상한 초과는 정지 후 선로 종료다. 기본 발판은 정지 위치에 3초 더 남고 추가 운행·적재는 불가다."
+      },
+      "parameterOverrides": {
+        "anchorMode": "projectile",
+        "anchorShotRangeM": 10,
+        "anchorShotSeconds": 3
+      },
+      "operationRelations": {
+        "O01": "별도 방호 외피 없음. 꽃잎 방어는 능력 효과다.",
+        "O02": "별도 특수 이동 없음. 선로 이동은 능력 효과다.",
+        "O03": "표식탄은 비공격성 설치 채널이다. 일반 공격 탄은 제공하지 않는다.",
+        "O04": "독립 분대 운용 없음",
+        "O05": "별도 몸체 자동 수행 없음. 능력의 사건 반응·정보 갱신과 구별한다.",
+        "O06": "모사 외피 없음. 우산 결합이나 자유 장식은 외관 복제 아님.",
+        "O07": "특수 감각 없음. 카메라는 정상 시야 공유, 표식 정보는 능력 효과다."
+      },
+      "carrierDescription": "별도 운반 발판",
+      "usageIds": [
+        "E05-projected"
+      ],
+      "defaultUsageId": "E05-projected"
+    },
+    {
+      "id": "E05-a05-f",
+      "abilityId": "E05",
+      "name": "고정 정거장",
+      "form": "facility",
+      "appearance": "실제 바닥에 자리 잡은 한 정거장과 별도 운반 발판.",
+      "capabilities": [
+        "fixed"
+      ],
+      "activityRange": "정거장 몸체 사용자 30m 안",
+      "statsProfile": "conditional",
+      "delivery": "정거장 위치가 첫 끝점이고 사용자가 둘째 끝점에 직접 접촉한다.",
+      "limitations": [
+        "정거장 이동·격투·잡기·증설 없음",
+        "선로·끝점·발판은 여전히 사용자 20m 안"
+      ],
+      "ruleOverrides": {
+        "activation": "사용자가 직접 만진 실제 바닥에 정거장을 만든다. 매번 노선 준비 명령으로 그 바닥에 첫 표식을 등록하고, 사용자가 다른 고정 표면에 직접 접촉해 30초 안에 둘째 끝점을 정한다. 공간·거리·통로가 부적격이면 준비를 종료한다. 정거장 끝점에 발판 하나를 만들고 사용자 명령으로 운행한다.",
+        "termination": "정거장 파괴/해제·설치 바닥 이동/파괴 때 몸체와 선로가 종료한다. 표식 제거·시간/거리/공통 종료, 통로 차단·적재 상한 초과 때도 정지 후 선로를 종료한다. 기본 발판은 정지 위치에 3초 더 남고 추가 운행·적재는 불가다."
+      },
+      "parameterOverrides": {
+        "anchorMode": "fixed-station"
+      },
+      "operationRelations": {
+        "O01": "별도 방호 외피 없음. 꽃잎 방어는 능력 효과다.",
+        "O02": "별도 특수 이동 없음. 선로 이동은 능력 효과다.",
+        "O03": "별도 일반 무장 없음",
+        "O04": "독립 분대 운용 없음",
+        "O05": "별도 몸체 자동 수행 없음. 능력의 사건 반응·정보 갱신과 구별한다.",
+        "O06": "모사 외피 없음. 우산 결합이나 자유 장식은 외관 복제 아님.",
+        "O07": "특수 감각 없음. 카메라는 정상 시야 공유, 표식 정보는 능력 효과다."
+      },
+      "carrierDescription": "별도 운반 발판",
+      "usageIds": [
+        "E05-station"
+      ],
+      "defaultUsageId": "E05-station"
+    },
+    {
+      "id": "E06-ng10",
+      "abilityId": "E06",
+      "name": "지상 추적견",
+      "form": "nonhuman",
+      "appearance": "바퀴 뒷발·집게 앞발로 낮은 틈에 접근하는 추적견.",
+      "capabilities": [
+        "walk",
+        "push",
+        "smallCarry"
+      ],
+      "activityRange": "사용자 10m 안",
+      "statsProfile": "precise",
+      "delivery": "집게 또는 사용자 접촉으로 표식을 붙이고 사적 정보를 출력한다.",
+      "limitations": [
+        "냄새 레이더·비행·원격 일반 시야·자율 전투 없음"
+      ],
+      "ruleOverrides": {},
+      "parameterOverrides": {},
+      "operationRelations": {
+        "O01": "별도 방호 외피 없음. 꽃잎 방어는 능력 효과다.",
+        "O02": "별도 특수 이동 없음. 선로 이동은 능력 효과다.",
+        "O03": "별도 일반 무장 없음",
+        "O04": "독립 분대 운용 없음",
+        "O05": "별도 몸체 자동 수행 없음. 능력의 사건 반응·정보 갱신과 구별한다.",
+        "O06": "모사 외피 없음. 우산 결합이나 자유 장식은 외관 복제 아님.",
+        "O07": "특수 감각 없음. 카메라는 정상 시야 공유, 표식 정보는 능력 효과다."
+      },
+      "usageIds": [
+        "E06-private",
+        "E06-public"
+      ],
+      "defaultUsageId": "E06-private"
+    },
+    {
+      "id": "E06-h10",
+      "abilityId": "E06",
+      "name": "표식 안내자",
+      "form": "humanoid",
+      "appearance": "손으로 표식을 붙이고 물건을 다루는 길잡이 몸체.",
+      "capabilities": [
+        "walk",
+        "melee",
+        "grip",
+        "tools"
+      ],
+      "activityRange": "사용자 10m 안",
+      "statsProfile": "precise",
+      "delivery": "몸체 손 또는 사용자 접촉으로 표식을 붙인다.",
+      "limitations": [
+        "강한 권투 몸체 성능·비행·사격·원격 일반 시야 없음"
+      ],
+      "ruleOverrides": {},
+      "parameterOverrides": {},
+      "operationRelations": {
+        "O01": "별도 방호 외피 없음. 꽃잎 방어는 능력 효과다.",
+        "O02": "별도 특수 이동 없음. 선로 이동은 능력 효과다.",
+        "O03": "별도 일반 무장 없음",
+        "O04": "독립 분대 운용 없음",
+        "O05": "별도 몸체 자동 수행 없음. 능력의 사건 반응·정보 갱신과 구별한다.",
+        "O06": "모사 외피 없음. 우산 결합이나 자유 장식은 외관 복제 아님.",
+        "O07": "특수 감각 없음. 카메라는 정상 시야 공유, 표식 정보는 능력 효과다."
+      },
+      "usageIds": [
+        "E06-private",
+        "E06-public"
+      ],
+      "defaultUsageId": "E06-private"
+    },
+    {
+      "id": "E06-t06",
+      "abilityId": "E06",
+      "name": "경로 나침반",
+      "form": "tool",
+      "appearance": "접촉 표식 기능과 사용자만 읽는 경로 표시를 가진 나침반.",
+      "capabilities": [
+        "held"
+      ],
+      "activityRange": "사용자가 손에 들어 사용",
+      "statsProfile": "precise",
+      "delivery": "사용자나 접촉 도구로 표식을 붙이고 사적으로 위치·경로를 표시한다.",
+      "limitations": [
+        "한 손 점유·독립 이동·추가 센서·비행·사격 없음"
+      ],
+      "ruleOverrides": {},
+      "parameterOverrides": {},
+      "operationRelations": {
+        "O01": "별도 방호 외피 없음. 꽃잎 방어는 능력 효과다.",
+        "O02": "별도 특수 이동 없음. 선로 이동은 능력 효과다.",
+        "O03": "물리 도구 사용과 대응하나 초자연적 칼날은 능력 효과다.",
+        "O04": "독립 분대 운용 없음",
+        "O05": "별도 몸체 자동 수행 없음. 능력의 사건 반응·정보 갱신과 구별한다.",
+        "O06": "모사 외피 없음. 우산 결합이나 자유 장식은 외관 복제 아님.",
+        "O07": "특수 감각 없음. 카메라는 정상 시야 공유, 표식 정보는 능력 효과다."
+      },
+      "usageIds": [
+        "E06-private",
+        "E06-public"
+      ],
+      "defaultUsageId": "E06-private"
+    },
+    {
+      "id": "E06-w06",
+      "abilityId": "E06",
+      "name": "경로 바이저",
+      "form": "worn",
+      "appearance": "사용자 시야 위에 표식 위치와 경로를 겹쳐 보이는 바이저.",
+      "capabilities": [
+        "worn"
+      ],
+      "activityRange": "사용자에게 착용",
+      "statsProfile": "precise",
+      "delivery": "사용자가 직접 접촉해 표식을 붙인다.",
+      "limitations": [
+        "양손은 자유로우나 시력·근력·방어력 강화 없음",
+        "무표식 탐지·원격 일반 시야 없음"
+      ],
+      "ruleOverrides": {},
+      "parameterOverrides": {},
+      "operationRelations": {
+        "O01": "별도 방호 외피 없음. 꽃잎 방어는 능력 효과다.",
+        "O02": "별도 특수 이동 없음. 선로 이동은 능력 효과다.",
+        "O03": "별도 일반 무장 없음",
+        "O04": "독립 분대 운용 없음",
+        "O05": "별도 몸체 자동 수행 없음. 능력의 사건 반응·정보 갱신과 구별한다.",
+        "O06": "모사 외피 없음. 우산 결합이나 자유 장식은 외관 복제 아님.",
+        "O07": "특수 감각 없음. 카메라는 정상 시야 공유, 표식 정보는 능력 효과다."
+      },
+      "usageIds": [
+        "E06-private",
+        "E06-public"
+      ],
+      "defaultUsageId": "E06-private"
+    },
+    {
+      "id": "E06-s06",
+      "abilityId": "E06",
+      "name": "여섯 길잡이",
+      "form": "swarm",
+      "appearance": "각각 바퀴와 집게를 가진 작은 길잡이 여섯 개.",
+      "capabilities": [
+        "walk",
+        "smallCarry",
+        "joint"
+      ],
+      "activityRange": "모든 개체 사용자 10m 안",
+      "statsProfile": "precise",
+      "delivery": "어느 한 개체의 접촉으로 집단 공유 표식 하나를 붙인다.",
+      "limitations": [
+        "합동 명령 하나·공유 목표 하나·집단 총출력 하나",
+        "독립 분대 운용·여섯 표적·여섯 능력·총출력 여섯 배 없음"
+      ],
+      "ruleOverrides": {},
+      "parameterOverrides": {
+        "swarmMembers": 6,
+        "independentCommands": 1
+      },
+      "operationRelations": {
+        "O01": "별도 방호 외피 없음. 꽃잎 방어는 능력 효과다.",
+        "O02": "별도 특수 이동 없음. 선로 이동은 능력 효과다.",
+        "O03": "별도 일반 무장 없음",
+        "O04": "여섯 개체의 합동 명령 하나. 독립 분대 운용 아님.",
+        "O05": "별도 몸체 자동 수행 없음. 능력의 사건 반응·정보 갱신과 구별한다.",
+        "O06": "모사 외피 없음. 우산 결합이나 자유 장식은 외관 복제 아님.",
+        "O07": "특수 감각 없음. 카메라는 정상 시야 공유, 표식 정보는 능력 효과다."
+      },
+      "usageIds": [
+        "E06-private",
+        "E06-public"
+      ],
+      "defaultUsageId": "E06-private"
+    },
+    {
+      "id": "E07-h2",
+      "abilityId": "E07",
+      "name": "칼날 손",
+      "form": "humanoid",
+      "appearance": "손등의 붉은 선으로 공간에 칼날을 그리는 격투 몸체.",
+      "capabilities": [
+        "walk",
+        "melee",
+        "strongMelee",
+        "grip",
+        "tools"
+      ],
+      "activityRange": "사용자 2m 안",
+      "statsProfile": "close",
+      "delivery": "손의 그리기 동작으로 칼날을 만든다.",
+      "limitations": [
+        "비행·사격·시야 공유 없음"
+      ],
+      "ruleOverrides": {},
+      "parameterOverrides": {},
+      "operationRelations": {
+        "O01": "별도 방호 외피 없음. 꽃잎 방어는 능력 효과다.",
+        "O02": "별도 특수 이동 없음. 선로 이동은 능력 효과다.",
+        "O03": "별도 일반 무장 없음",
+        "O04": "독립 분대 운용 없음",
+        "O05": "별도 몸체 자동 수행 없음. 능력의 사건 반응·정보 갱신과 구별한다.",
+        "O06": "모사 외피 없음. 우산 결합이나 자유 장식은 외관 복제 아님.",
+        "O07": "특수 감각 없음. 카메라는 정상 시야 공유, 표식 정보는 능력 효과다."
+      },
+      "drawing": "인간형 손의 지정된 그리기 동작으로",
+      "followAnchor": "인간형의 손등",
+      "usageIds": [
+        "E07-fixed",
+        "E07-follow"
+      ],
+      "defaultUsageId": "E07-fixed"
+    },
+    {
+      "id": "E07-t07",
+      "abilityId": "E07",
+      "name": "칼날 붓",
+      "form": "tool",
+      "appearance": "붓끝으로 한 줄의 에너지 칼날을 그리는 손 도구.",
+      "capabilities": [
+        "held"
+      ],
+      "activityRange": "사용자가 손에 들어 사용",
+      "statsProfile": "close",
+      "delivery": "붓을 실제로 휘둘러 선을 그린다.",
+      "limitations": [
+        "한 손 점유·독립 이동·별도 격투 몸체·비행·사격·시야 공유 없음",
+        "도구의 성능은 사용자 근력 강화가 아님"
+      ],
+      "ruleOverrides": {},
+      "parameterOverrides": {},
+      "operationRelations": {
+        "O01": "별도 방호 외피 없음. 꽃잎 방어는 능력 효과다.",
+        "O02": "별도 특수 이동 없음. 선로 이동은 능력 효과다.",
+        "O03": "물리 도구 사용과 대응하나 초자연적 칼날은 능력 효과다.",
+        "O04": "독립 분대 운용 없음",
+        "O05": "별도 몸체 자동 수행 없음. 능력의 사건 반응·정보 갱신과 구별한다.",
+        "O06": "모사 외피 없음. 우산 결합이나 자유 장식은 외관 복제 아님.",
+        "O07": "특수 감각 없음. 카메라는 정상 시야 공유, 표식 정보는 능력 효과다."
+      },
+      "drawing": "손에 든 붓의 그리기 동작으로",
+      "followAnchor": "붓끝",
+      "usageIds": [
+        "E07-fixed",
+        "E07-follow"
+      ],
+      "defaultUsageId": "E07-fixed"
+    },
+    {
+      "id": "E07-p07",
+      "abilityId": "E07",
+      "name": "붉은 안개 고리",
+      "form": "phenomenon",
+      "appearance": "주먹 크기 실체 고리 주변 2m로 얇은 안개가 퍼진다.",
+      "capabilities": [
+        "coreMove"
+      ],
+      "activityRange": "실체 핵·안개는 사용자 10m 안",
+      "statsProfile": "environment",
+      "delivery": "핵에서 보이는 공간에 안개가 선을 그린다.",
+      "limitations": [
+        "핵은 공격받고 손상은 사용자에게 대응",
+        "고체 손작업·잡기·비행·벽 통과·원격 시야 없음",
+        "안개 외형이 흩어져도 핵이 기능하면 별도 정지 타이머 없음"
+      ],
+      "ruleOverrides": {},
+      "parameterOverrides": {},
+      "operationRelations": {
+        "O01": "별도 방호 외피 없음. 꽃잎 방어는 능력 효과다.",
+        "O02": "별도 특수 이동 없음. 선로 이동은 능력 효과다.",
+        "O03": "별도 일반 무장 없음",
+        "O04": "독립 분대 운용 없음",
+        "O05": "별도 몸체 자동 수행 없음. 능력의 사건 반응·정보 갱신과 구별한다.",
+        "O06": "모사 외피 없음. 우산 결합이나 자유 장식은 외관 복제 아님.",
+        "O07": "특수 감각 없음. 카메라는 정상 시야 공유, 표식 정보는 능력 효과다."
+      },
+      "drawing": "실체 핵에서 보이는 공간에 안개의 지정된 그리기 동작으로",
+      "usageIds": [
+        "E07-fixed"
+      ],
+      "defaultUsageId": "E07-fixed"
+    }
+  ],
+  "usages": [
+    {
+      "id": "E01-next",
+      "abilityId": "E01",
+      "name": "다음 타격 방향 바꾸기",
+      "summary": "만져 표시한 물건의 다음 타격 밀림 방향을 한 번 바꿉니다.",
+      "gained": [
+        "분리 물건 하나의 다음 밀림 방향 변경"
+      ],
+      "lost": [],
+      "ruleOverrides": {},
+      "parameterOverrides": {},
+      "bodyIds": [
+        "E01-h2",
+        "E01-t01"
+      ]
+    },
+    {
+      "id": "E02-together",
+      "abilityId": "E02",
+      "name": "함께 보내기",
+      "summary": "붉고 푸른 빛덩이를 동시에 보내, 둘이 만난 곳을 폭발시킵니다.",
+      "gained": [
+        "두 색을 즉시 한 지점으로 전달"
+      ],
+      "lost": [
+        "미리 붙여 놓고 기다리는 운용 없음"
+      ],
+      "ruleOverrides": {},
+      "parameterOverrides": {},
+      "bodyIds": [
+        "E02-nf100",
+        "E02-h2",
+        "E02-t02"
+      ]
+    },
+    {
+      "id": "E02-attach",
+      "abilityId": "E02",
+      "name": "붙여두기",
+      "summary": "붉은 빛덩이를 물건에 먼저 붙이고, 푸른 빛덩이를 나중에 보내 폭발시킵니다.",
+      "gained": [
+        "폭발 위치를 먼저 준비하고 타이밍 지정"
+      ],
+      "lost": [
+        "두 색의 동시 전달 없음",
+        "준비 중 일반 사격 불가·제거/엄폐에 대응할 시간 제공"
+      ],
+      "ruleOverrides": {
+        "effect": "붉은 빛덩이를 적격 표면에 부착한 뒤 같은 쌍의 푸른 빛덩이가 닿으면 반경 2m의 순간 충격 폭발이 일어난다. 표면 자체가 폭탄으로 변하지 않고 만료만으로 폭발하지 않는다.",
+        "target": "붉은 빛덩이 하나는 보이는 비생물 고체의 외부 표면에 붙인다. 사람·입은 옷·스탠드 몸체는 제외. 같은 준비 쌍과 폭발 범위의 사람·물건·스탠드에 작용한다.",
+        "activation": "앞선 공유 사격 휴식이 끝난 뒤 붉은 것을 먼저 보내 붙인다. 별도 명령 때 같은 쌍의 푸른 것을 한 번 보낸다. 둘 다 직선 전달·유도 없음. 기다리는 동안 쌍 슬롯이 예약된다. {{body.delivery}}",
+        "duration": "각 전달의 비행은 최대 3초. 붉은 부착부터 최대 10초 안에 푸른 것이 도착해야 한다. 두 전달 사이 추가 휴식은 없으며 쌍 전체 종료 뒤 공유 휴식 3초.",
+        "termination": "두 색 접촉 폭발, 부착물 제거·표면 파괴·부착 시간/거리 이탈·다른 충돌·공통 종료 때 둘 다 소멸한다. 물건 이동만으로 종료하지 않으며 만료는 불발이다.",
+        "limits": "준비 쌍 하나. 준비 중 일반 사격 불가. 두 색 동시 공격·새 쌍 결합·유도·벽 관통·아군 면역 없음. 모든 방어를 무시하지 않는다. 상대는 부착물을 제거하거나 푸른 전달을 막을 수 있다."
+      },
+      "parameterOverrides": {
+        "deliveryMode": "staged",
+        "attachmentSeconds": 10
+      },
+      "bodyIds": [
+        "E02-nf100",
+        "E02-h2",
+        "E02-t02"
+      ]
+    },
+    {
+      "id": "E03-body-center",
+      "abilityId": "E03",
+      "name": "몸체 곁에 펼치기",
+      "summary": "선택한 몸체 곁에 세 꽃잎을 펼쳐 움직임에 맞춰 보호합니다.",
+      "gained": [
+        "몸체 중심의 수동 방향 방어"
+      ],
+      "lost": [
+        "접촉 표식 없이 별도 동료 중심을 지정하지 못함"
+      ],
+      "ruleOverrides": {},
+      "parameterOverrides": {},
+      "bodyIds": [
+        "E03-w03",
+        "E03-h10",
+        "E03-i03"
+      ]
+    },
+    {
+      "id": "E03-escort",
+      "abilityId": "E03",
+      "name": "동료 곁에",
+      "summary": "직접 만져 표시한 한 사람 곁에 꽃잎을 펼쳐 떨어져서 호위합니다.",
+      "gained": [
+        "몸체와 보호 위치 분리"
+      ],
+      "lost": [
+        "별도 자기 몸체 방패 없음",
+        "먼저 접촉·세트 중 중심 교체 불가·자동 방어 없음"
+      ],
+      "ruleOverrides": {
+        "target": "사용자가 직접 만진 사람 한 명 또는 성인이 혼자 운반 가능한 비생물 물건 하나에 보이는 꽃표식을 붙이고 그 대상을 보호 중심으로 삼는다. 사용자 자신도 선택 가능. 빈 공간 또는 보이는 표면 바깥에 펼치며 물체 내부에 만들지 않는다.",
+        "activation": "사용자가 직접 접촉해 꽃표식을 붙이고 한 세트를 펼친다. 세트 중 중심 교체는 불가. 사용자가 방향·배치를 직접 조작하며 동료에게 조작권이나 시야 공유를 주지 않는다.",
+        "termination": "표식 제거·파괴·대상 이탈, 30초, 사용자 취소·공통 종료 때 끝난다. 파괴된 장이나 중심에서 2m를 벗어난 고정 발판은 그 장만 소멸. 전체 종료 뒤 새 세트까지 10초 대기.",
+        "limits": "세 장뿐이며 사라진 장을 세트 도중 보충하지 못한다. 각 장은 성인 한 명과 평소 들 수 있는 짐을 지지한다. 발판으로 사람·짐을 받치는 장은 자리에서 움직이지 못한다. 순간적인 피격은 이 발판 고정 조건이 아니다. 이동·재배치 때 고체 장애물을 통과하지 못하며 막힌 장은 멈추고 중심과의 범위를 넘으면 사라진다. 기체·열·정신 공격·공간 삭제를 막는 만능막은 아니며, 저절로 압착하거나 피해를 반사하는 기능은 없다. 중심은 세트 중 교체 불가. 별도 몸체 중심 방패·자동 방어·대상 근력 상승·시야 공유는 없다."
+      },
+      "parameterOverrides": {
+        "centerBinding": "marked-target"
+      },
+      "bodyIds": [
+        "E03-w03",
+        "E03-h10"
+      ]
+    },
+    {
+      "id": "E04-paired",
+      "abilityId": "E04",
+      "name": "교대 상승·하강",
+      "summary": "한쪽을 올리면서 반대쪽을 내립니다. 한쪽이 막히면 둘 다 멈춥니다.",
+      "gained": [
+        "두 장의 동시 교대"
+      ],
+      "lost": [
+        "각 장을 별도 명령으로 올리는 운용 없음"
+      ],
+      "ruleOverrides": {},
+      "parameterOverrides": {},
+      "bodyIds": [
+        "E04-f04",
+        "E04-a04-h"
+      ]
+    },
+    {
+      "id": "E04-individual",
+      "abilityId": "E04",
+      "name": "따로 움직이기",
+      "summary": "한 장씩 올리거나 내립니다. 다른 장은 현재 높이에 남습니다.",
+      "gained": [
+        "각 장의 독립 높이 유지·두 장 모두 높은 위치 가능"
+      ],
+      "lost": [
+        "두 장 동시 이동·동시 교대 명령 없음"
+      ],
+      "ruleOverrides": {
+        "effect": "실제 바닥 두 곳 위에 1m×1m 발판 두 장을 만들고 한 장씩 골라 바닥 높이~3m 사이에서 상승·하강·정지시킨다. 다른 장은 현재 높이를 유지한다. 실제 지면을 변형하지 않는다.",
+        "activation": "{{body.installation}} 처음 두 장은 바닥 높이다. 한 장씩 골라 상승·하강·정지 명령을 내린다. 다른 장을 움직이려면 먼저 현재 장을 정지시킨다.",
+        "limits": "한 번에 이동 중인 발판은 한 장. 하중 초과나 고체 장애물이 선택 장을 막으면 그 장이 멈춘다. 방해 해소 후 새 명령으로 재개한다. 동시 교대·수평 운반·중력 변경·발판 쌓기·자동 적 판별·순간 압사·낙하 면역은 없다."
+      },
+      "parameterOverrides": {
+        "controlMode": "individual",
+        "maxMovingPlatforms": 1,
+        "bothStopIfBlocked": false
+      },
+      "bodyIds": [
+        "E04-f04",
+        "E04-a04-h"
+      ],
+      "caution": "설치 위치는 고정되고 한 번에 한 장만 움직입니다. 선택 장이 막히면 그 장이 멈추며 30초 뒤 발판이 사라집니다."
+    },
+    {
+      "id": "E05-direct",
+      "abilityId": "E05",
+      "name": "직접 만져 잇기",
+      "summary": "두 고정 끝점을 직접 만져 선로를 잇고 {{body.carrierDescription}}에 태워 보냅니다.",
+      "gained": [
+        "직접 준비한 두 끝점 사이 왕복"
+      ],
+      "lost": [
+        "장애물 우회·순간이동·강제 탑승 없음"
+      ],
+      "ruleOverrides": {},
+      "parameterOverrides": {},
+      "bodyIds": [
+        "E05-h10",
+        "E05-a05-r"
+      ]
+    },
+    {
+      "id": "E05-projected",
+      "abilityId": "E05",
+      "name": "표식 투사 포함",
+      "summary": "보이는 표면에 두 끝점 표식을 보내고 운반 발판으로 왕복합니다.",
+      "gained": [
+        "몸체에 포함된 원격 끝점 준비"
+      ],
+      "lost": [
+        "일반 공격 탄·자동 표면 판별 없음"
+      ],
+      "ruleOverrides": {},
+      "parameterOverrides": {},
+      "bodyIds": [
+        "E05-a05-t"
+      ]
+    },
+    {
+      "id": "E05-station",
+      "abilityId": "E05",
+      "name": "정거장과 직접 접촉",
+      "summary": "고정 정거장에서 직접 만진 둘째 끝점까지 운반 발판을 보냅니다.",
+      "gained": [
+        "고정 거점에서 반복 운반"
+      ],
+      "lost": [
+        "첫 끝점 이동·정거장 증설 없음"
+      ],
+      "ruleOverrides": {},
+      "parameterOverrides": {},
+      "bodyIds": [
+        "E05-a05-f"
+      ]
+    },
+    {
+      "id": "E06-private",
+      "abilityId": "E06",
+      "name": "나만 보는 흔적",
+      "summary": "표시한 대상 하나의 현재 위치와 최근 30초 경로를 나만 확인합니다.",
+      "gained": [
+        "벽 너머도 표시되는 사적 위치·경로"
+      ],
+      "lost": [
+        "주변 지도·신원·생각·무표식 탐지 없음"
+      ],
+      "ruleOverrides": {},
+      "parameterOverrides": {},
+      "bodyIds": [
+        "E06-ng10",
+        "E06-h10",
+        "E06-t06",
+        "E06-w06",
+        "E06-s06"
+      ]
+    },
+    {
+      "id": "E06-public",
+      "abilityId": "E06",
+      "name": "공개 흔적",
+      "summary": "사적 추적 정보는 유지하고, 실제 보이는 경로에 동료와 적 모두 읽는 빛의 자취를 냅니다.",
+      "gained": [
+        "동료가 정상 시야로 공개 자취를 따라갈 수 있음"
+      ],
+      "lost": [
+        "추적 자취가 적에게도 노출·무료 비공개 전환 없음"
+      ],
+      "ruleOverrides": {
+        "effect": "표식의 현재 위치·설치 이후 최근 30초 경로를 사용자에게 사적으로 표시하고, 표식 위치와 경로에 공개 빛의 자취도 낸다. 동료·적·일반인은 정상 시야로 보이는 부분만 읽으며 벽 너머 지도나 시야를 받지 않는다.",
+        "limits": "활성 표식 하나. 자동 공격·무표식 탐지·냄새 추적·미래 읽기·경로의 실물화는 없다. 기본 몸체는 비행·일반 시야 공유·자율 전투를 주지 않는다. 자취는 적에게도 공개되고 무료 비공개 모드 전환은 없다. 타인에게 표식 권한·투시·주변 지도·새 추적 정보를 주지 않는다."
+      },
+      "parameterOverrides": {
+        "publicTrail": true
+      },
+      "bodyIds": [
+        "E06-ng10",
+        "E06-h10",
+        "E06-t06",
+        "E06-w06",
+        "E06-s06"
+      ]
+    },
+    {
+      "id": "E07-fixed",
+      "abilityId": "E07",
+      "name": "그 자리에 남기기",
+      "summary": "그은 선을 생성 위치에 3초 남겨 바로 베거나 회피 길을 압박합니다.",
+      "gained": [
+        "생성 위치에 남는 절단선"
+      ],
+      "lost": [
+        "몸체를 따라오는 이동 무기 없음"
+      ],
+      "ruleOverrides": {},
+      "parameterOverrides": {},
+      "bodyIds": [
+        "E07-h2",
+        "E07-t07",
+        "E07-p07"
+      ]
+    },
+    {
+      "id": "E07-follow",
+      "abilityId": "E07",
+      "name": "따라오는 선",
+      "summary": "그은 칼날을 {{body.followAnchor}}에 붙여 위치와 방향을 따라 움직입니다.",
+      "gained": [
+        "움직이며 휘두르는 절단 도구"
+      ],
+      "lost": [
+        "지나간 자리에 잔류선·함정 없음"
+      ],
+      "ruleOverrides": {
+        "activation": "{{body.drawing}} 보이는 공간·표면까지 즉시 한 선을 만들고 {{body.followAnchor}}에 상대 위치·방향을 고정한다. 그 지점의 이동·회전과 함께 움직인다. 형성 중 접촉부터 절단 가능. 독립 발사·유도는 없다.",
+        "duration": "한 선은 최대 3초. 생성 뒤 형태·길이는 바꿀 수 없다. 새 선은 이전 선을 대체하며 별도 재생성 대기는 없다.",
+        "termination": "3초·새 선·거리 이탈·몸체 기능 상실·공통 종료, 또는 이동 중 절단하지 못하는 고체 장애물에 밀어 넣으면 소멸한다. 이미 생긴 상처·파손은 남는다.",
+        "limits": "한 선·아군 면역 없음. 지정 지점을 따라 움직이며 독립 발사·유도·잔류선·발판·구속줄·자동 조준은 없다. 몸체 타격과 칼날 등급을 더해 위력을 배가하지 않는다."
+      },
+      "parameterOverrides": {
+        "lineFollows": true,
+        "retainedTrail": false,
+        "solidBlockEndsLine": true
+      },
+      "bodyIds": [
+        "E07-h2",
+        "E07-t07"
+      ],
+      "examples": [
+        "칼날을 움직여 접근하며 절단하기",
+        "이동하는 구조 현장의 줄·얇은 장애물 베기"
+      ],
+      "caution": "한 선·3초·아군 위험. 이동하며 베지만 지나간 자리에 칼날을 남기지 못합니다."
+    }
+  ]
+};
+
+
+const copy = value => structuredClone(value);
+const find = (list, id, kind) => {
+  const item = list.find(entry => entry.id === id);
+  if (!item) throw new Error(`${kind}을 찾을 수 없습니다: ${id}`);
+  return item;
+};
+const getAbility = (catalog, id) => find(catalog.abilities, id, '능력');
+const getBodies = (catalog, abilityId) => getAbility(catalog, abilityId).bodyIds.map(id => find(catalog.bodies, id, '몸체'));
+const getUsages = (catalog, abilityId, bodyId) => {
+  const ability = getAbility(catalog, abilityId);
+  if (!ability.bodyIds.includes(bodyId)) throw new Error('이 능력과 호환되지 않는 몸체입니다.');
+  const body = find(catalog.bodies, bodyId, '몸체');
+  return body.usageIds.map(id => find(catalog.usages, id, '사용법'));
+};
+const renderText = (text, context) => text.replace(/\{\{([\w.]+)\}\}/g, (_, path) => {
+  const parts = path.split('.');
+  let value = context;
+  for (const part of parts) {
+    if (!value || !Object.hasOwn(value, part)) throw new Error(`누락된 규칙 데이터: ${path}`);
+    value = value[part];
+  }
+  if (typeof value !== 'string' && typeof value !== 'number') throw new Error(`문자열 규칙 데이터가 아닙니다: ${path}`);
+  return String(value);
+});
+
+/** Field replacement, never concatenating two independent operating modes. */
+function composeStand(catalog, selection) {
+  const ability = getAbility(catalog, selection.abilityId);
+  const body = getBodies(catalog, ability.id).find(entry => entry.id === selection.bodyId);
+  if (!body) throw new Error('이 능력과 호환되지 않는 몸체입니다.');
+  const usage = getUsages(catalog, ability.id, body.id).find(entry => entry.id === selection.usageId);
+  if (!usage || !usage.bodyIds.includes(body.id)) throw new Error('이 몸체와 호환되지 않는 사용법입니다.');
+  const defaultBody = find(catalog.bodies, ability.defaultBodyId, '기본 몸체');
+  const rules = { ...ability.rules, ...body.ruleOverrides, ...usage.ruleOverrides };
+  const context = { ability, body, usage };
+  for (const field of RULE_FIELDS) {
+    if (typeof rules[field] !== 'string' || !rules[field].trim()) throw new Error(`필수 규칙 누락: ${field}`);
+    rules[field] = renderText(rules[field], context);
+  }
+  // The exported result contains common termination too, not just a reference.
+  rules.termination += ` ${catalog.commonRules[0]}`;
+  const capabilityNames = ids => ids.map(id => catalog.capabilities[id]);
+  const added = body.capabilities.filter(id => !defaultBody.capabilities.includes(id));
+  const removed = defaultBody.capabilities.filter(id => !body.capabilities.includes(id));
+  return {
+    schemaVersion: catalog.schemaVersion,
+    selection: { abilityId: ability.id, bodyId: body.id, usageId: usage.id },
+    ability: { id: ability.id, name: ability.name, tag: ability.tag, symbol: ability.symbol },
+    body: { id: body.id, name: body.name, form: body.form, formName: catalog.forms[body.form], appearance: body.appearance, activityRange: body.activityRange, delivery: body.delivery, capabilities: copy(body.capabilities), actions: capabilityNames(body.capabilities), limitations: copy(body.limitations), operationRelations: copy(body.operationRelations) },
+    usage: { id: usage.id, name: body.usageLabels?.[usage.id] ?? usage.name, gained: copy(usage.gained), lost: copy(usage.lost) },
+    summary: renderText(usage.summary, context),
+    rules,
+    commonRules: copy(catalog.commonRules),
+    parameters: { ...copy(ability.parameters), ...copy(body.parameterOverrides), ...copy(usage.parameterOverrides) },
+    stats: copy(catalog.statsProfiles[body.statsProfile]),
+    statsLabels: copy(catalog.statsLabels),
+    addedBodyActions: capabilityNames(added),
+    lostBodyActions: capabilityNames(removed),
+    notGranted: [...copy(body.limitations), ...copy(usage.lost)],
+    examples: copy(usage.examples ?? ability.examples),
+    caution: usage.caution ?? ability.caution,
+    economy: copy(ability.economy),
+  };
+}
+
+function validateCatalog(catalog) {
+  const fail = (path, message) => { throw new Error(`[${path}] ${message}`); };
+  const object = (value,path) => { if(!value || typeof value !== 'object' || Array.isArray(value)) fail(path,'데이터 객체가 없습니다.'); };
+  const string = (value,path) => { if(typeof value !== 'string' || !value.trim()) fail(path,'필수 문자열이 없습니다.'); };
+  const strings = (value,path,nonempty=false) => {
+    if(!Array.isArray(value) || (nonempty && !value.length) || value.some(v=>typeof v!=='string' || !v.trim())) fail(path,'문자열 목록이 없거나 잘못됐습니다.');
+  };
+  const links = (value,path) => { strings(value,path,true); if(new Set(value).size!==value.length) fail(path,'중복된 호환 관계입니다.'); };
+  const patch = (value,path) => {
+    object(value,path);
+    for(const [field,text] of Object.entries(value)) {
+      if(!RULE_FIELDS.includes(field)) fail(path+'/'+field,'알 수 없는 규칙 대체 항목입니다.');
+      string(text,path+'/'+field);
+    }
+  };
+  const display = (value,path) => {
+    if(value===undefined) return;
+    object(value,path);
+    for(const [key,text] of Object.entries(value)) {
+      if(key==='limits') strings(text,path+'/'+key,true);
+      else string(text,path+'/'+key);
+    }
+  };
+  object(catalog,'catalog');
+  if(catalog.schemaVersion !== 1) fail('schemaVersion','지원하지 않는 데이터 버전입니다.');
+  const registries={};const globalIds=new Set();
+  for(const key of ['abilities','bodies','usages']) {
+    if(!Array.isArray(catalog[key]) || !catalog[key].length) fail(key,'목록이 없습니다.');
+    registries[key]=new Map();
+    for(const entry of catalog[key]) {
+      object(entry,key);string(entry.id,key+'/id');
+      if(globalIds.has(entry.id)) fail(key+'/'+entry.id,'중복된 ID입니다.');
+      globalIds.add(entry.id);registries[key].set(entry.id,entry);
+    }
+  }
+  for(const key of ['forms','capabilities','statsProfiles']) object(catalog[key],key);
+  for(const key of ['forms','capabilities']) for(const [id,label] of Object.entries(catalog[key])) string(label,key+'/'+id);
+  strings(catalog.statsLabels,'statsLabels',true);
+  if(catalog.statsLabels.length!==6) fail('statsLabels','육각형 능력치 이름은 여섯 개여야 합니다.');
+  strings(catalog.commonRules,'commonRules',true);
+  const reference = (kind,id,path) => { const entry=registries[kind].get(id); if(!entry) fail(path,`존재하지 않는 참조: ${id}`);return entry; };
+  for(const ability of catalog.abilities) {
+    const path=ability.id;display(ability.display,path+'/display');
+    for(const key of ['name','tag','symbol','description','caution','defaultBodyId','defaultUsageId']) string(ability[key],path+'/'+key);
+    strings(ability.examples,path+'/examples',true);object(ability.rules,path+'/rules');
+    for(const field of RULE_FIELDS) string(ability.rules[field],path+'/rules/'+field);
+    patch(ability.rules,path+'/rules');object(ability.parameters,path+'/parameters');object(ability.economy,path+'/economy');
+    links(ability.bodyIds,path+'/bodyIds');links(ability.usageIds,path+'/usageIds');
+    if(!ability.bodyIds.includes(ability.defaultBodyId)) fail(path,'기본 몸체가 허용 목록에 없습니다.');
+    if(!ability.usageIds.includes(ability.defaultUsageId)) fail(path,'기본 사용법이 허용 목록에 없습니다.');
+    for(const id of ability.bodyIds) reference('bodies',id,path+'/bodyIds');
+    for(const id of ability.usageIds) reference('usages',id,path+'/usageIds');
+    const recommended=reference('bodies',ability.defaultBodyId,path+'/defaultBodyId');
+    if(recommended.defaultUsageId!==ability.defaultUsageId) fail(path,'추천 몸체와 능력의 기본 사용법이 일치하지 않습니다.');
+  }
+  for(const body of catalog.bodies) {
+    const path=body.abilityId+'/'+body.id;display(body.display,path+'/display');
+    for(const key of ['name','abilityId','form','appearance','activityRange','delivery','statsProfile','defaultUsageId']) string(body[key],path+'/'+key);
+    const ability=reference('abilities',body.abilityId,path);
+    if(!ability.bodyIds.includes(body.id)) fail(path,'등록되지 않은 몸체 관계입니다.');
+    if(!Object.hasOwn(catalog.forms,body.form)) fail(path+'/form','지원하지 않는 외형 분류입니다.');
+    strings(body.capabilities,path+'/capabilities');
+    if(new Set(body.capabilities).size!==body.capabilities.length || body.capabilities.some(id=>!Object.hasOwn(catalog.capabilities,id))) fail(path+'/capabilities','명시되지 않거나 중복된 몸체 기능입니다.');
+    strings(body.limitations,path+'/limitations');object(body.operationRelations,path+'/operationRelations');
+    const stats=catalog.statsProfiles[body.statsProfile];
+    if(!Array.isArray(stats) || stats.length!==6 || stats.some(v=>!['A','B','C','D','E'].includes(v))) fail(path+'/statsProfile','몸체 능력치가 잘못됐습니다.');
+    links(body.usageIds,path+'/usageIds');
+    if(!body.usageIds.includes(body.defaultUsageId)) fail(path,'기본 사용법이 없습니다.');
+    patch(body.ruleOverrides,path+'/ruleOverrides');object(body.parameterOverrides,path+'/parameterOverrides');
+    for(const id of body.usageIds) {
+      const usage=reference('usages',id,path+'/usageIds');
+      if(!ability.usageIds.includes(id) || usage.abilityId!==ability.id || !Array.isArray(usage.bodyIds) || !usage.bodyIds.includes(body.id)) fail(path+'/'+id,'사용법 호환 관계가 일치하지 않습니다.');
+    }
+    if(body.usageLabels!==undefined) {
+      object(body.usageLabels,path+'/usageLabels');
+      for(const [id,label] of Object.entries(body.usageLabels)) {if(!body.usageIds.includes(id)) fail(path+'/usageLabels/'+id,'호환되지 않는 사용법 별칭입니다.');string(label,path+'/usageLabels/'+id);}
+    }
+  }
+  for(const usage of catalog.usages) {
+    const path=usage.abilityId+'/'+usage.id;display(usage.display,path+'/display');
+    for(const key of ['name','abilityId','summary']) string(usage[key],path+'/'+key);
+    const ability=reference('abilities',usage.abilityId,path);
+    if(!ability.usageIds.includes(usage.id)) fail(path,'등록되지 않은 사용법 관계입니다.');
+    links(usage.bodyIds,path+'/bodyIds');strings(usage.gained,path+'/gained');strings(usage.lost,path+'/lost');
+    patch(usage.ruleOverrides,path+'/ruleOverrides');object(usage.parameterOverrides,path+'/parameterOverrides');
+    if(usage.caution!==undefined) string(usage.caution,path+'/caution');
+    if(usage.examples!==undefined) strings(usage.examples,path+'/examples',true);
+    for(const id of usage.bodyIds) {
+      const body=reference('bodies',id,path+'/bodyIds');
+      if(body.abilityId!==ability.id || !body.usageIds.includes(usage.id)) fail(path+'/'+id,'사용법의 역방향 관계가 일치하지 않습니다.');
+    }
+  }
+  for(const ability of catalog.abilities) for(const body of getBodies(catalog,ability.id)) for(const usage of getUsages(catalog,ability.id,body.id)) {
+    const path=ability.id+'/'+body.id+'/'+usage.id;
+    try { composeStand(catalog,{abilityId:ability.id,bodyId:body.id,usageId:usage.id}); }
+    catch(error) { fail(path,error.message); }
+  }
+  return true;
+}
+
+const initialState = () => ({ step: 'abilities', abilityId: null, bodyId: null, usageId: null, bodyConfirmed: false });
+function selectAbility(catalog, state, abilityId, quick = false) {
+  const ability = getAbility(catalog, abilityId);
+  return { ...initialState(), step: quick ? 'result' : 'bodies', abilityId, bodyId: ability.defaultBodyId, usageId: ability.defaultUsageId, bodyConfirmed: true };
+}
+function selectBody(catalog, state, bodyId) {
+  const body = getBodies(catalog, state.abilityId).find(entry => entry.id === bodyId);
+  if (!body) throw new Error('이 몸체는 호환되지 않습니다.');
+  const compatible = getUsages(catalog, state.abilityId, bodyId).some(usage => usage.id === state.usageId && usage.bodyIds.includes(bodyId));
+  return { ...state, step: 'bodies', bodyId, usageId: compatible ? state.usageId : body.defaultUsageId, bodyConfirmed: true };
+}
+function selectUsage(catalog, state, usageId) {
+  if (!getUsages(catalog, state.abilityId, state.bodyId).some(usage => usage.id === usageId)) throw new Error('이 사용법은 호환되지 않습니다.');
+  return { ...state, usageId };
+}
+function advance(catalog, state) {
+  if (state.step === 'bodies') {
+    if (!state.bodyConfirmed) throw new Error('몸체를 먼저 선택해 주세요.');
+    return { ...state, step: getUsages(catalog, state.abilityId, state.bodyId).length > 1 ? 'usages' : 'result' };
+  }
+  if (state.step === 'usages') {
+    composeStand(catalog, state);
+    return { ...state, step: 'result' };
+  }
+  return state;
+}
+function goBack(catalog, state) {
+  if (state.step === 'result') return { ...state, step: getUsages(catalog, state.abilityId, state.bodyId).length > 1 ? 'usages' : 'bodies' };
+  if (state.step === 'usages') return { ...state, step: 'bodies' };
+  if (state.step === 'bodies') return { ...state, step: 'abilities' };
+  return state;
+}
+function resultText(result) {
+  const labels = ['효과','대상','발동','범위','지속','종료','제약'];
+  return [`${result.ability.name} — ${result.body.name}`, `사용법: ${result.usage.name}`, result.summary, `몸체: ${result.body.appearance}`, `일반 행동: ${result.body.actions.join(' / ')}`, `몸체 범위: ${result.body.activityRange}`, `능력치: ${result.statsLabels.map((label,i) => `${label} ${result.stats[i]}`).join(' / ')}`, ...RULE_FIELDS.map((key,i) => `${labels[i]}: ${result.rules[key]}`), `미제공·포기한 기능: ${result.notGranted.join(' / ')}`, ...result.commonRules].join('\n\n');
+}
+
+// Display copy only. Mechanical data and rule composition remain in data/core.
+const DISPLAY = {
+  abilities: {
+    E01: { limits: ['분리된 물건 하나·10kg까지, 다음 타격 한 번만.', '사람에게 직접 표시하거나 힘·피해를 없애지 못합니다.'] },
+    E02: { limits: ['한 쌍만. 서로 만나기 전에 막히면 불발입니다.', '아군도 폭발에 휘말립니다. 사격과 능력은 휴식을 공유합니다.'] },
+    E03: { limits: ['방어 방향은 직접 조작합니다. 자동 방어가 아닙니다.', '세 장·30초. 부서진 장은 보충 못 하고, 사람을 실으면 움직이지 못합니다.'] },
+    E04: { limits: ['설치 위치는 고정. 한쪽이 막히면 둘 다 멈춥니다.', '30초 뒤 발판이 사라집니다. 내려올 길을 준비하세요.'] },
+    E05: { limits: ['먼저 두 끝점을 지정해야 합니다. 빈 직선 통로만 연결합니다.', '한 번에 한 명과 짐. 종료 전에 내려올 방법이 필요합니다.'] },
+    E06: { limits: ['먼저 접촉해 표식 하나를 붙여야 합니다. 대상은 사용자 30m 안.', '표식 제거·범위 이탈로 끝납니다. 냄새나 무표식 탐지는 못 합니다.'] },
+    E07: { limits: ['한 선·3초. 새 선은 이전 선을 없앱니다.', '아군도 베입니다. 모든 물질을 자르지는 못합니다.'] }
+  },
+  bodies: {
+    'E01-h2': { note: '힘 있는 근접 격투와 손작업.', limit: '비행·사격·시야 공유 없음.' },
+    'E01-t01': { note: '봉 끝으로 접촉할 수 있지만 한 손을 쓰며, 별도 격투 몸체는 사라집니다.', limit: '한 손 점유·독립 이동 없음.' },
+    'E02-nf100': { note: '비행·일반 사격·시야 공유. 손작업과 수송은 못 합니다.', limit: '일반 사격과 능력은 동시에 못 쓰며 휴식을 공유합니다.' },
+    'E02-h2': { note: '격투·잡기·도구 작업을 얻고 비행·일반 사격·시야 공유를 포기합니다.', limit: '가까이 폭발시키면 사용자도 위험합니다.' },
+    'E02-t02': { note: '직접 조준하는 일반 사격. 비행과 원격 시야는 포기합니다.', limit: '한 손으로 들며 독립 이동·별도 격투 몸체는 없습니다.' },
+    'E03-w03': { note: '몸에 착용해 함께 이동. 별도 격투 몸체는 없습니다.', limit: '방어는 펼친 꽃잎만. 착용만으로 전신 방어·근력은 늘지 않습니다.' },
+    'E03-h10': { note: '떨어져 이동·잡기·부축 가능. 착용 몸체 대신 호위자를 조작합니다.', limit: '강한 권투 몸체·비행·사격·시야 공유 없음.' },
+    'E03-i03': { note: '실제 우산을 다른 사람이 들 수 있습니다. 착용·독립 이동은 포기합니다.', limit: '실제 우산이 필요하며 파괴·결합 해제 때 끝납니다. 동료 중심 사용법은 없습니다.' },
+    'E04-f04': { note: '고정된 거점에서 조작. 이동·잡기·격투는 못 합니다.', limit: '노출된 제어함은 공격받을 수 있습니다.' },
+    'E04-a04-h': { note: '이동·손작업과 접촉 설치를 얻습니다. 제어점은 계속 고정입니다.', limit: '몸체와 바닥 제어 표식을 각각 지켜야 합니다.' },
+    'E05-h10': { note: '접촉 설치·잡기·도구 작업. 별도 운반 발판에 태웁니다.', limit: '강한 권투 몸체·비행·일반 사격 없음.' },
+    'E05-a05-r': { note: '차 자체에 탑승. 손작업과 별도 운반 발판을 포기합니다.', limit: '차도 사용자 10m 안. 선로 밖 비행·벽 통과·무장은 없습니다.' },
+    'E05-a05-t': { note: '보이는 표면에 끝점 표식을 쏩니다. 격투·잡기·독립 이동은 포기합니다.', limit: '표식은 공격 탄이 아닙니다. 눈에 보이는 표면만 지정합니다.' },
+    'E05-a05-f': { note: '정거장이 첫 끝점이 됩니다. 몸체 이동·접촉 손작업은 포기합니다.', limit: '첫 끝점은 고정. 선로와 운반 발판은 사용자 20m 안입니다.' },
+    'E06-ng10': { appearance: '바퀴 뒷발·집게 앞발의 작은 추적견.', note: '낮은 틈에 접근·밀기·작은 물건 운반.', limit: '냄새 탐지·자율 전투·시야 공유 없음.' },
+    'E06-h10': { appearance: '물건을 다루는 인간형 길잡이.', note: '잡기·격투·도구 작업. 낮은 추적견 몸체를 포기합니다.', limit: '강한 권투 몸체·비행·사격·시야 공유 없음.' },
+    'E06-t06': { appearance: '손에 드는 경로 표시 나침반.', note: '직접 경로를 읽기. 독립 접근·운반은 포기합니다.', limit: '한 손 점유·추가 센서 없음.' },
+    'E06-w06': { appearance: '표식 경로가 겹쳐 보이는 바이저.', note: '양손을 비우고 경로 보기. 독립 이동·운반은 포기합니다.', limit: '시력·근력·방어력 강화나 무표식 탐지는 없습니다.' },
+    'E06-s06': { appearance: '바퀴와 집게가 달린 길잡이 여섯 개.', note: '여섯 개로 접근·운반. 각각 따로 운용하지 못합니다.', limit: '합동 명령·표식·총출력은 하나. 독립 분대는 아닙니다.' },
+    'E07-h2': { note: '힘 있는 격투·손작업과 손등으로 칼날 그리기.', limit: '비행·사격·시야 공유 없음.' },
+    'E07-t07': { note: '붓끝으로 그립니다. 한 손을 쓰며 별도 격투 몸체는 포기합니다.', limit: '독립 이동이나 사용자 근력 강화는 없습니다.' },
+    'E07-p07': { note: '지면을 움직이는 고리와 안개로 그립니다. 격투·잡기는 포기합니다.', limit: '핵은 공격받습니다. 비행·벽 통과·따라오는 선 사용법은 없습니다.' }
+  },
+  usages: {
+    'E01-next': { effect: '다음 타격의 밀림 방향을 한 번 바꿉니다.', gain: '표시한 물건을 다른 방향으로 밀기', loss: '힘 증폭·피해 제거는 불가' },
+    'E02-together': { effect: '두 색을 동시에 보내 한 지점에서 폭발.', gain: '바로 조준해 공격', loss: '붙여 놓고 기다리는 운용 없음' },
+    'E02-attach': { effect: '붉은 빛을 붙이고, 10초 안에 푸른 빛을 보냅니다.', gain: '폭발 위치를 미리 준비', loss: '동시 전달 없음·준비 중 일반 사격 불가', limit: '비생물 표면만 부착. 상대가 제거하거나 전달을 막으면 불발입니다.' },
+    'E03-body-center': { effect: '몸체 주변에 세 꽃잎을 펼쳐 방어.', gain: '몸체의 이동을 따라 호위', loss: '몸체와 떨어진 동료를 중심으로 지정하지 못함' },
+    'E03-escort': { effect: '직접 만져 표시한 동료 주변에 방패를 펼칩니다.', gain: '몸체와 떨어진 곳을 호위', loss: '별도 몸체 방패 없음·세트 중 보호 중심 교체 불가', limit: '먼저 직접 접촉. 방향은 사용자가 조작하며 자동 방어는 아닙니다.' },
+    'E04-paired': { effect: '한쪽이 오르면 다른 쪽이 내려갑니다.', gain: '두 발판을 동시에 교대', loss: '한쪽이 막히면 둘 다 정지' },
+    'E04-individual': { effect: '한 장씩 움직이고, 다른 장은 높이를 유지합니다.', gain: '두 장 모두 높은 위치에 유지 가능', loss: '동시 이동·교대는 불가' },
+    'E05-direct': { effect: '두 고정 끝점을 직접 만져 연결합니다.', gain: '준비한 직선 길 왕복', loss: '우회·순간이동·강제 탑승 없음' },
+    'E05-projected': { effect: '보이는 표면에 표식 두 개를 쏩니다.', gain: '끝점을 원격 준비', loss: '공격 탄·자동 표면 판별 없음' },
+    'E05-station': { effect: '정거장과 직접 만진 끝점을 연결합니다.', gain: '고정 거점에서 반복 운반', loss: '첫 끝점 이동·정거장 증설 없음' },
+    'E06-private': { effect: '표식의 위치와 최근 30초 경로를 나만 봅니다.', gain: '가림막 너머도 사적으로 확인', loss: '동료에게 공개 자취는 보이지 않음' },
+    'E06-public': { effect: '내 추적 정보에, 모두가 보는 빛의 자취를 더합니다.', gain: '동료가 보이는 경로를 따라오기', loss: '적에게도 노출·비공개로 자유 전환 불가', limit: '타인은 정상 시야로 보이는 부분만 봅니다. 벽 너머 시야는 받지 않습니다.' },
+    'E07-fixed': { effect: '그린 칼날은 그 위치에 3초 남습니다.', gain: '지나갈 길을 압박하는 잔류선', loss: '몸체를 따라오는 무기는 없음' },
+    'E07-follow': { effect: '칼날이 손등이나 붓끝의 이동·회전을 따릅니다.', gain: '움직이며 휘두르기', loss: '지나간 자리에 칼날을 남기지 못함', limit: '못 베는 고체에 밀어 넣으면 소멸합니다. 한 선·3초·아군 위험은 같습니다.' }
+  }
+};
+
+// UI labels only; future declared capabilities fall back to their catalog label.
+function shortActions(ids, catalog) {
+  const names = {walk:'지상 이동',melee:'격투',strongMelee:'강한 격투',grip:'잡기·부축',tools:'손작업',flight:'비행',fire:'일반 사격',vision:'시야 공유',push:'밀기',smallCarry:'작은 짐 운반',wheels:'바퀴 이동',held:'손에 들기',joint:'여섯 개 합동',umbrella:'우산 개폐·전달',worn:'착용 이동',coreMove:'핵의 지면 이동',fixed:'고정 설치'};
+  const list = ids.filter(id => !(id==='melee' && ids.includes('strongMelee')));
+  if(list.includes('grip') && list.includes('tools')) return list.filter(id=>id!=='tools').map(id=>id==='grip'?'잡기·손작업':names[id] ?? catalog.capabilities[id]).join(' · ');
+  return list.map(id=>names[id] ?? catalog.capabilities[id]).join(' · ');
+}
+
+
+const STORAGE_KEY = 'jojo-stand-creator:v1.2';
+const SAVE_VERSION = 1;
+const savedFields = ['step','abilityId','bodyId','usageId','bodyConfirmed'];
+
+// Revision of this completed combination, not a security checksum.
+// Adding unrelated K/body/U records does not discard an existing valid draft.
+function catalogRevision(catalog, selection) {
+  let hash = 2166136261;
+  const text = JSON.stringify(composeStand(catalog,selection));
+  for(let index=0; index<text.length; index++) hash = Math.imul(hash ^ text.charCodeAt(index),16777619);
+  return `${catalog.schemaVersion}:${(hash >>> 0).toString(16)}`;
+}
+
+function restoreState(catalog, raw) {
+  const reset = reason => ({state:initialState(),status:'reset',reason});
+  if(raw === null || raw === undefined) return {state:initialState(),status:'empty',reason:''};
+  try {
+    const saved = JSON.parse(raw);
+    if(saved.version !== SAVE_VERSION) return reset('저장 형식이 바뀌었습니다.');
+    const value = saved.state;
+    if(!value || !['abilities','bodies','usages','result'].includes(value.step)) return reset('진행 단계가 올바르지 않습니다.');
+    if(value.step === 'abilities' && value.abilityId === null && value.bodyId === null && value.usageId === null) return {state:initialState(),status:'empty',reason:''};
+    if(typeof value.bodyConfirmed !== 'boolean' || !value.bodyConfirmed) return reset('선택 상태가 올바르지 않습니다.');
+    // Recompute from IDs; stored effects/stats/HTML never grant authority.
+    composeStand(catalog,value);
+    if(saved.revision !== catalogRevision(catalog,value)) return reset('저장한 조합의 규칙 또는 콘텐츠가 바뀌었습니다.');
+    const state = Object.fromEntries(savedFields.map(field => [field,value[field]]));
+    if(state.step === 'usages' && getUsages(catalog,state.abilityId,state.bodyId).length === 1) state.step = 'result';
+    return {state,status:'restored',reason:''};
+  } catch { return reset('저장된 선택을 읽거나 검증할 수 없습니다.'); }
+}
+
+function loadState(catalog, storage, key = STORAGE_KEY) {
+  if(!storage) return {state:initialState(),status:'unavailable',reason:''};
+  try {
+    const result = restoreState(catalog,storage.getItem(key));
+    if(result.status === 'reset') storage.removeItem(key);
+    return result;
+  } catch { return {state:initialState(),status:'unavailable',reason:''}; }
+}
+
+function saveState(catalog, state, storage, key = STORAGE_KEY) {
+  if(!storage) return false;
+  try {
+    if(!state.abilityId) storage.removeItem(key);
+    else {
+      composeStand(catalog,state);
+      const saved = {version:SAVE_VERSION,revision:catalogRevision(catalog,state),state:Object.fromEntries(savedFields.map(field => [field,state[field]]))};
+      storage.setItem(key,JSON.stringify(saved));
+    }
+    return true;
+  } catch { return false; }
+}
+
+function browserStorage() {
+  try { return globalThis.localStorage ?? null; } catch { return null; }
+}
+
+
+const compactKey='jojo-stand-creator:compact-v1';
+const escape=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const bullets=items=>`<ul class="list">${items.map(item=>`<li>${escape(item)}</li>`).join('')}</ul>`;
+const ruleLabels=['효과','대상','발동','범위','지속','종료','제약'];
+// Short list copy only. All complete rules stay in the shared catalog.
+const listLimits={
+ E01:'분리된 물건 하나·10kg까지. 첫 타격 한 번만, 피해를 없애지는 못합니다.',
+ E02:'한 쌍만·아군도 위험. 일반 사격과 능력은 휴식을 공유합니다.',
+ E03:'수동 방어·30초. 사람을 실은 꽃잎은 움직이지 못합니다.',
+ E04:'고정 설치·30초. 한쪽이 막히면 둘 다 멈춥니다.',
+ E05:'두 끝점을 먼저 지정. 빈 직선 통로·한 번에 한 명과 짐만.',
+ E06:'먼저 접촉해 표식 하나·대상 30m 안. 제거·이탈 때 종료.',
+ E07:'새 선은 이전 선을 지웁니다. 아군도 위험·무조건 절단은 아닙니다.'
+};
+
+function mountCreator(root,catalog=CATALOG,options={}) {
+ validateCatalog(catalog);
+ const storage=Object.hasOwn(options,'storage')?options.storage:browserStorage();
+ const restored=loadState(catalog,storage,compactKey);
+ let state=restored.state;
+ if(state.abilityId && state.step!=='abilities') state={...state,step:'result'};
+ let editor=null;
+ let selectionMessage='';
+ let notice=restored.status==='restored'?'이전 제작을 이어서 보고 있습니다.':restored.status==='reset'?'저장한 조합이 현재 규칙과 맞지 않아 새로 시작합니다.':restored.status==='unavailable'?'진행 저장이 제한되어 있지만 제작은 가능합니다.':'';
+ const live=document.createElement('p');live.className='sr-only';live.setAttribute('role','status');live.setAttribute('aria-live','polite');root.insertAdjacentElement('afterend',live);
+ const result=()=>composeStand(catalog,state);
+ const bodyCopy=body=>({limit:body.limitations[0]||'',...DISPLAY.bodies[body.id],...catalog.bodies.find(item=>item.id===body.id)?.display});
+ const usageCopy=(usage,stand)=>({effect:stand.summary,loss:usage.lost.join(' · '),...DISPLAY.usages[usage.id],...usage.display});
+ const rulesMarkup=rules=>`<dl class="rules">${RULE_FIELDS.map((field,i)=>`<dt>${ruleLabels[i]}</dt><dd>${escape(rules[field])}</dd>`).join('')}</dl>`;
+ const button=(action,label,attrs='',style='quiet')=>`<button type="button" class="btn ${style}" data-action="${action}" ${attrs}>${escape(label)}</button>`;
+ function abilityList() {
+  return `<h1 tabindex="-1">어떤 능력을 만들까요?</h1><p class="intro">하나를 고르면 기본형이 완성됩니다. 몸체와 사용법은 바꿀 수 있어요.</p><div class="grid compact-catalog">${catalog.abilities.map(ability=>{const current=state.abilityId===ability.id?result():null;return `<article class="card ability-card ${state.abilityId===ability.id?'selected':''}" data-ability="${escape(ability.id)}"><div class="compact-title"><h2>${escape(ability.name)}</h2><span class="tag">${escape(ability.tag)}</span></div><p class="effect">${escape(current?.summary||ability.description)}</p><p class="list-limit">${escape(current?.caution||ability.display?.listLimit||listLimits[ability.id]||ability.caution)}</p>${button('ability',state.abilityId===ability.id?'이 능력으로 계속':'이 능력 선택',`data-id="${escape(ability.id)}" aria-label="${escape(ability.name)} 선택"`,'primary')}</article>`;}).join('')}</div>`;
+ }
+ function bodyEditor() {
+  const ability=getAbility(catalog,state.abilityId);
+  const recommended=getBodies(catalog,ability.id).find(body=>body.id===ability.defaultBodyId);
+  return `<section class="inline-editor" id="body-editor"><div class="editor-title"><h2 tabindex="-1">몸체 바꾸기</h2>${button('close','닫기')}</div><p class="small">추천 몸체와 비교한 차이입니다. 선택하면 바로 반영됩니다.</p><div class="compact-options">${getBodies(catalog,ability.id).map(body=>{
+   const copy=bodyCopy(body);
+   const added=body.capabilities.filter(id=>!recommended.capabilities.includes(id));
+   const lost=recommended.capabilities.filter(id=>!body.capabilities.includes(id));
+   const chosen=body.id===state.bodyId;
+   return `<article class="compact-option ${chosen?'selected':''}"><div class="option-title"><h3>${escape(body.name)}</h3><span class="badge">${escape(catalog.forms[body.form])}${body.id===recommended.id?' · 추천':''}</span></div><p class="small appearance">${escape(copy.appearance||body.appearance)}</p>${body.id===recommended.id?`<p>${escape(shortActions(body.capabilities,catalog))}</p>`:`${added.length?`<p><strong>얻음</strong> ${escape(shortActions(added,catalog))}</p>`:''}${lost.length?`<p><strong>포기</strong> ${escape(shortActions(lost,catalog))}</p>`:''}`}<p class="small">활동: ${escape(body.activityRange)}</p><p class="list-limit">${escape(copy.limit)}</p>${button('body',chosen?'선택됨':'이 몸체 선택',`data-id="${escape(body.id)}" aria-pressed="${chosen}" aria-label="${escape(body.name)} ${chosen?'현재 선택':'선택'}"`,chosen?'primary':'quiet')}</article>`;
+  }).join('')}</div></section>`;
+ }
+ function usageEditor() {
+  return `<section class="inline-editor" id="usage-editor"><div class="editor-title"><h2 tabindex="-1">사용법 바꾸기</h2>${button('close','닫기')}</div><p class="small">한 가지 운용을 고릅니다. 두 사용법의 장점을 임의로 합치지 않습니다.</p><div class="compact-options">${getUsages(catalog,state.abilityId,state.bodyId).map(usage=>{
+   const stand=composeStand(catalog,{...state,usageId:usage.id});const copy=usageCopy(usage,stand);const chosen=usage.id===state.usageId;
+   return `<article class="compact-option ${chosen?'selected':''}"><h3>${escape(stand.usage.name)}</h3><p>${escape(copy.effect)}</p>${copy.loss?`<p class="list-limit"><strong>포기</strong> ${escape(copy.loss)}</p>`:''}${copy.limit?`<p class="small">${escape(copy.limit)}</p>`:''}${button('usage',chosen?'선택됨':'이 사용법 선택',`data-id="${escape(usage.id)}" aria-pressed="${chosen}" aria-label="${escape(stand.usage.name)} ${chosen?'현재 선택':'선택'}"`,chosen?'primary':'quiet')}</article>`;
+  }).join('')}</div></section>`;
+ }
+ function preview() {
+  const stand=result(),ability=getAbility(catalog,state.abilityId),usage=catalog.usages.find(item=>item.id===state.usageId);
+  const copy=usageCopy(usage,stand),body=bodyCopy(stand.body);
+  const warnings=[...(usage.caution?[usage.caution]:ability.display?.limits||DISPLAY.abilities[ability.id]?.limits||[ability.caution]),body.limit,copy.limit];
+  const defaultUsage=getBodies(catalog,state.abilityId).find(item=>item.id===state.bodyId).defaultUsageId;
+  if(usage.id!==defaultUsage && copy.loss)warnings.push(copy.loss);
+  const modes=getUsages(catalog,state.abilityId,state.bodyId);
+  return `<div class="head-row"><div><p class="kicker">나만의 스탠드 · 완성</p><h1 tabindex="-1">${escape(stand.ability.name)}</h1></div>${button('abilities','능력 바꾸기')}</div><p class="preview-effect">${escape(stand.summary)}</p><div class="selection-fields"><section class="selection-field" id="body-field"><div class="field-row"><div><span class="field-label">몸체</span><h2>${escape(stand.body.name)} <span class="small">${escape(stand.body.formName)}</span></h2></div>${button('edit-body',editor==='body'?'변경 닫기':'바꾸기',`aria-expanded="${editor==='body'}" aria-controls="body-editor" aria-label="몸체 바꾸기"`)}</div><p class="body-actions">${escape(shortActions(stand.body.capabilities,catalog))}</p>${selectionMessage?`<p class="small" data-message="selection" role="status">${escape(selectionMessage)}</p>`:''}${editor==='body'?bodyEditor():'<div id="body-editor" hidden></div>'}</section>${modes.length>1?`<section class="selection-field" id="usage-field"><div class="field-row"><div><span class="field-label">사용법</span><h2>${escape(stand.usage.name)}</h2></div>${button('edit-usage',editor==='usage'?'변경 닫기':'바꾸기',`aria-expanded="${editor==='usage'}" aria-controls="usage-editor" aria-label="사용법 바꾸기"`)}</div>${editor==='usage'?usageEditor():'<div id="usage-editor" hidden></div>'}</section>`:`<p class="single-mode">${escape(stand.usage.name)} · 호환 사용법 하나로 자동 적용</p>`}</div><section class="preview-use"><p class="example"><span>활용</span> ${escape(stand.examples[0])}</p><div class="caution">${bullets([...new Set(warnings.filter(Boolean))])}</div></section><section class="compact-details"><details data-detail="rules"><summary>능력 전체 규칙</summary>${rulesMarkup(stand.rules)}<h3>선택한 운용</h3>${bullets(stand.usage.gained)}<h3>이 운용에서 포기하는 것</h3>${bullets(stand.usage.lost)}<h3>공통 종료·예외</h3>${bullets(stand.commonRules)}<h3>활용 더 보기</h3>${bullets(stand.examples)}</details><details data-detail="body"><summary>몸체 기능·능력치</summary><p>${escape(stand.body.appearance)}</p>${bullets(stand.body.actions)}<h3>발동·전달</h3><p>${escape(stand.body.delivery)}</p><h3>몸체 활동 범위</h3><p>${escape(stand.body.activityRange)}</p><h3>포함되지 않는 기능</h3>${bullets(stand.body.limitations)}${stand.addedBodyActions.length?`<p>추천 대비 추가: ${escape(stand.addedBodyActions.join(' · '))}</p>`:''}${stand.lostBodyActions.length?`<p>추천 대비 포기: ${escape(stand.lostBodyActions.join(' · '))}</p>`:''}<div class="stats">${stand.stats.map((v,i)=>`<div class="stat"><span>${escape(stand.statsLabels[i])}</span><strong>${escape(v)}</strong></div>`).join('')}</div><p class="small">능력치는 이미 가진 행동의 성능입니다. 명시된 거리·시간·개수는 바뀌지 않으며 사용자 신체가 강화되지 않습니다.</p></details></section><div class="compact-footer">${button('copy','전체 원고 복사')}${button('reset','새로 제작')}</div><p id="copy-status" class="small" role="status"></p><div class="copy-fallback" hidden><label for="result-copy">전체 원고 · 직접 복사</label><textarea id="result-copy" class="copy-area" readonly></textarea></div>`;
+ }
+ function render(focus=null) {
+  root.innerHTML=(notice?`<p class="session-note">${escape(notice)}</p>`:'')+(state.step==='abilities'?abilityList():preview());
+  if(focus) {const target=root.querySelector(focus);target?.focus({preventScroll:true});target?.scrollIntoView({block:'nearest',behavior:'auto'});}
+ }
+ const onClick=async event=>{
+  const node=event.target.closest('button[data-action]');if(!node||!root.contains(node))return;
+  const action=node.dataset.action;let focus='h1',message='';
+  try {
+   if(action==='copy') {
+    const text=resultText(result());
+    try {if(!navigator.clipboard?.writeText)throw Error('manual');await navigator.clipboard.writeText(text);const status=root.querySelector('#copy-status');if(status)status.textContent='전체 규칙을 포함한 원고를 복사했습니다.';}
+    catch {const box=root.querySelector('.copy-fallback');const area=root.querySelector('#result-copy');if(box&&area){box.hidden=false;area.value=text;area.focus();area.select();root.querySelector('#copy-status').textContent='원고를 선택했습니다. 직접 복사해 주세요.';}}
+    return;
+   }
+   if(action==='ability') {state=state.abilityId===node.dataset.id?{...state,step:'result'}:selectAbility(catalog,state,node.dataset.id,true);editor=null;notice='';selectionMessage='';message='스탠드가 완성되었습니다.';}
+   else if(action==='abilities') {state={...state,step:'abilities'};editor=null;}
+   else if(action==='edit-body') {editor=editor==='body'?null:'body';focus=editor?'#body-editor h2':'[data-action="edit-body"]';}
+   else if(action==='edit-usage') {editor=editor==='usage'?null:'usage';focus=editor?'#usage-editor h2':'[data-action="edit-usage"]';}
+   else if(action==='close') {focus=editor==='body'?'[data-action="edit-body"]':'[data-action="edit-usage"]';editor=null;}
+   else if(action==='body') {const previous=state.usageId;state={...selectBody(catalog,state,node.dataset.id),step:'result'};editor=null;notice='';selectionMessage=previous!==state.usageId?`이 몸체와 호환되지 않아 ‘${result().usage.name}’으로 바뀌었습니다.`:'';message=selectionMessage||`${result().body.name}으로 바뀌었습니다.`;focus='[data-action="edit-body"]';}
+   else if(action==='usage') {state=selectUsage(catalog,state,node.dataset.id);editor=null;notice='';selectionMessage='';message=`${result().usage.name}으로 바뀌었습니다.`;focus='[data-action="edit-usage"]';}
+   else if(action==='reset') {state=initialState();editor=null;notice='';selectionMessage='';}
+   if(!saveState(catalog,state,storage,compactKey))notice='진행 저장이 제한되어 있지만 제작은 가능합니다.';
+   render(focus);live.textContent=message;
+   if(action==='ability'||action==='abilities'||action==='reset')window.scrollTo({top:0,behavior:'auto'});
+  } catch(error) {live.textContent=error.message;const warning=document.createElement('p');warning.className='error';warning.setAttribute('role','alert');warning.textContent=error.message;root.prepend(warning);}
+ };
+ root.addEventListener('click',onClick);render();
+ return {getState:()=>structuredClone(state),getResult:()=>state.abilityId?result():null,destroy:()=>{root.removeEventListener('click',onClick);live.remove();}};
+}
+let activeCreator=null;
+if(typeof document!=='undefined') {const root=document.getElementById('app');if(root){try{activeCreator=mountCreator(root);}catch(error){root.textContent=`제작 정보를 읽지 못했습니다: ${error.message}`;root.setAttribute('role','alert');}}}
+
+</script>
+</body></html>
